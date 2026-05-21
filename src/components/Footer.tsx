@@ -15,7 +15,7 @@ const companyLinks = [
 ];
 
 const resourceLinks = [
-  { label: "Blog", href: "/news" },
+  { label: "Blog", href: "/blog" },
   { label: "Press Kit", href: "/news" },
   { label: "For Media", href: "/news" },
 ];

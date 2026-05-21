@@ -6,12 +6,13 @@ import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Domů", href: "/" },
-  { label: "O nás", href: "/about" },
-  { label: "Služby", href: "/services" },
-  { label: "Novinky", href: "/news" },
-  { label: "Kariéra", href: "/careers" },
-  { label: "Kontakt", href: "/contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Our Tools", href: "/services" },
+  { label: "Blog", href: "/blog" },
+  { label: "Newsroom", href: "/news" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Header() {

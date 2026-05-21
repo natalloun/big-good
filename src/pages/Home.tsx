@@ -27,7 +27,7 @@ export function Home() {
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="container mx-auto px-4 relative z-10 pt-20 pb-32">
           <div className="max-w-5xl mx-auto text-center space-y-10 animate-fade-in">
             <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm font-medium gap-2">
               <Sparkles className="w-3.5 h-3.5" />
