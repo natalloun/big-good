@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ArrowRight, Calendar } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import {
@@ -105,9 +104,6 @@ export function Blog() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-5 animate-fade-in">
-            <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm font-medium">
-              Blog
-            </Badge>
             <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
               Insights & Updates
             </h1>

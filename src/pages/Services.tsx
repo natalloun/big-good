@@ -1,5 +1,4 @@
 import { ArrowRight, ExternalLink, Mail, Shield, FileText, Send, Network, Lightbulb } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -73,9 +72,6 @@ export function Services() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm font-medium">
-              The Tools in Our Ecosystem
-            </Badge>
             <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
               Lightweight. Focused. Market-Proven.
             </h1>

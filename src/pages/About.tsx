@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Users, Quote } from "lucide-react";
 
@@ -43,9 +42,6 @@ export function About() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-            <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm font-medium">
-              Big Good: Why and For Whom?
-            </Badge>
             <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
               Internal Tools Made Standalone Products
             </h1>
@@ -89,9 +85,6 @@ export function About() {
       <section className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-20 space-y-6">
-            <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm font-medium">
-              Who Is Big Good?
-            </Badge>
             <h2 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
               Led by Ecomail
             </h2>

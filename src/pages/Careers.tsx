@@ -1,5 +1,4 @@
 import { ArrowRight, Globe, Clock, TrendingUp, Heart } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const perks = [
@@ -40,9 +39,6 @@ export function Careers() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <Badge className="rounded-full px-4 py-2 text-sm font-medium bg-white/20 text-white border-white/30">
-              Join Us
-            </Badge>
             <h1 className="text-5xl md:text-7xl font-black tracking-tight">
               Come build with us
             </h1>

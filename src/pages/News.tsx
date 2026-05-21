@@ -1,5 +1,4 @@
 import { ExternalLink } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 const mediaItems = [
   {
@@ -32,9 +31,6 @@ export function News() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm font-medium">
-              Media Resources
-            </Badge>
             <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
               News About Big Good
             </h1>

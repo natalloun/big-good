@@ -1,5 +1,4 @@
 import { MapPin, Globe, Mail } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -32,9 +31,6 @@ export function Contact() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center space-y-10 animate-fade-in">
-            <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm font-medium">
-              Let's Talk
-            </Badge>
             <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
               Ready to join the ecosystem?
             </h1>
@@ -72,9 +68,6 @@ export function Contact() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16 space-y-4">
-              <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm font-medium">
-                Get in Touch
-              </Badge>
               <h2 className="text-5xl font-black text-gray-900 dark:text-white tracking-tight">
                 Let's talk
               </h2>
