@@ -32,7 +32,7 @@ export function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl overflow-hidden z-50 min-w-[140px]">
+        <div className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl overflow-hidden z-50 min-w-[148px]">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
@@ -44,7 +44,7 @@ export function LanguageSwitcher() {
                   : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               )}
             >
-              <span className="text-base">{lang.flag}</span>
+              <span className="text-lg leading-none">{lang.flag}</span>
               <span>{lang.label}</span>
             </button>
           ))}
