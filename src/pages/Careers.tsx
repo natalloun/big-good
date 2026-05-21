@@ -1,34 +1,13 @@
 import { ArrowRight, Globe, Clock, TrendingUp, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const perks = [
-  {
-    icon: Globe,
-    title: "Work from anywhere",
-    description: "Fully remote team across Europe",
-    color: "from-blue-500 to-blue-600",
-  },
-  {
-    icon: Clock,
-    title: "Flexible hours",
-    description: "Work when you're most productive",
-    color: "from-purple-500 to-purple-600",
-  },
-  {
-    icon: TrendingUp,
-    title: "Learn & grow",
-    description: "Work on multiple products",
-    color: "from-green-500 to-green-600",
-  },
-  {
-    icon: Heart,
-    title: "Real impact",
-    description: "Your work matters from day one",
-    color: "from-pink-500 to-pink-600",
-  },
-];
+const perkIcons = [Globe, Clock, TrendingUp, Heart];
 
 export function Careers() {
+  const { t } = useLanguage();
+  const c = t.careers;
+
   return (
     <>
       {/* Hero */}
@@ -39,12 +18,8 @@ export function Careers() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight">
-              Come build with us
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-normal">
-              We're always looking for talented, passionate people who want to build tools that matter. No corporate BS, just good work and good people.
-            </p>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight">{c.heading}</h1>
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-normal">{c.description}</p>
           </div>
         </div>
       </section>
@@ -57,20 +32,17 @@ export function Careers() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16">
-            {perks.map((perk) => {
-              const Icon = perk.icon;
+            {c.perks.map(({ title, desc }, i) => {
+              const Icon = perkIcons[i];
               return (
-                <div
-                  key={perk.title}
-                  className="p-8 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300"
-                >
+                <div key={title} className="p-8 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300">
                   <div className="space-y-4">
                     <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
                       <Icon className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-2">{perk.title}</h3>
-                      <p className="text-white/80 text-sm">{perk.description}</p>
+                      <h3 className="text-xl font-bold mb-2">{title}</h3>
+                      <p className="text-white/80 text-sm">{desc}</p>
                     </div>
                   </div>
                 </div>
@@ -84,7 +56,7 @@ export function Careers() {
               className="rounded-2xl bg-white text-blue-600 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 hover-lift px-10 py-7 text-lg font-semibold"
               onClick={() => window.open("https://ecomail.cz/kariera/#volne-pozice", "_blank", "noopener,noreferrer")}
             >
-              View Open Positions
+              {c.cta}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>

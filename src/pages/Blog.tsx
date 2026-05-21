@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   blogPosts,
   formatDate,
@@ -64,6 +65,8 @@ function FilterCheckbox({
 }
 
 export function Blog() {
+  const { t } = useLanguage();
+  const b = t.blog;
   const [selectedCompanies, setSelectedCompanies] = useState<Set<BlogCompany>>(new Set());
   const [selectedCategories, setSelectedCategories] = useState<Set<BlogCategory>>(new Set());
 
@@ -105,10 +108,10 @@ export function Blog() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-5 animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
-              Insights & Updates
+              {b.heading}
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal">
-              Company news, product updates, and analysis from the Big Good team.
+              {b.description}
             </p>
           </div>
         </div>
@@ -124,7 +127,7 @@ export function Blog() {
               {/* Filter by product */}
               <div className="space-y-3">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  Filter by Product
+                  {b.filterProduct}
                 </h3>
                 <div className="space-y-2.5">
                   {ALL_COMPANIES.map((company) => (
@@ -144,7 +147,7 @@ export function Blog() {
               {/* Filter by type */}
               <div className="space-y-3">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  Filter by Type
+                  {b.filterType}
                 </h3>
                 <div className="space-y-2.5">
                   {ALL_CATEGORIES.map((cat) => (
@@ -167,7 +170,7 @@ export function Blog() {
                   }}
                   className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
                 >
-                  Clear all filters
+                  {b.clearFilters}
                 </button>
               )}
             </aside>
@@ -176,7 +179,7 @@ export function Blog() {
             <div className="flex-1 min-w-0">
               {filtered.length === 0 ? (
                 <div className="text-center py-24 text-gray-500 dark:text-gray-400">
-                  <p className="text-lg font-medium">No articles match your filters.</p>
+                  <p className="text-lg font-medium">{b.noResults}</p>
                   <button
                     onClick={() => {
                       setSelectedCompanies(new Set());
@@ -184,14 +187,13 @@ export function Blog() {
                     }}
                     className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
                   >
-                    Clear filters
+                    {b.clearInline}
                   </button>
                 </div>
               ) : (
                 <>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-                    {filtered.length} article{filtered.length !== 1 ? "s" : ""}
-                    {hasFilters ? " matching filters" : ""}
+                    {b.articleCount(filtered.length, hasFilters)}
                   </p>
                   <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
                     {filtered.map((post) => (

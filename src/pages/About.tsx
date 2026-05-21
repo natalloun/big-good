@@ -1,20 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Users, Quote } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const audienceCards = [
-  {
-    icon: Code,
-    title: "For Dev, Product, and Security Teams",
-    description: "Building blocks for the email stack: Template editing, transactional workflows, and domain security.",
-    color: "from-blue-500 to-purple-600",
-  },
-  {
-    icon: Users,
-    title: "For Marketing Teams",
-    description: "Intuitive tools for content and email performance: design, editing, automation, and deliverability.",
-    color: "from-green-500 to-emerald-600",
-  },
-];
+const audienceIcons = [Code, Users];
 
 const founders = [
   {
@@ -31,7 +19,12 @@ const founders = [
   },
 ];
 
+const audienceColors = ["from-blue-500 to-purple-600", "from-green-500 to-emerald-600"];
+
 export function About() {
+  const { t } = useLanguage();
+  const a = t.about;
+
   return (
     <>
       {/* Hero */}
@@ -43,10 +36,10 @@ export function About() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
-              Internal Tools Made Standalone Products
+              {a.heroHeading}
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto font-normal">
-              Each Big Good product began as something we needed ourselves, proven in real workflows and built to scale. Now they're available globally, with their own teams and roadmaps.
+              {a.heroDesc}
             </p>
           </div>
         </div>
@@ -56,22 +49,18 @@ export function About() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {audienceCards.map((card) => {
-              const Icon = card.icon;
+            {a.audience.map((card, i) => {
+              const Icon = audienceIcons[i];
               return (
-                <Card key={card.title} className="group relative p-10 rounded-3xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300 overflow-hidden">
+                <Card key={i} className="group relative p-10 rounded-3xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300 overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
                   <CardContent className="relative z-10 space-y-6 p-0">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${card.color} flex items-center justify-center shadow-lg`}>
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${audienceColors[i]} flex items-center justify-center shadow-lg`}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     <div className="space-y-3">
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                        {card.title}
-                      </h3>
-                      <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {card.description}
-                      </p>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{card.title}</h3>
+                      <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">{card.description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -86,30 +75,23 @@ export function About() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-20 space-y-6">
             <h2 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
-              Led by Ecomail
+              {a.leadershipHeading}
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-normal">
-              The Big Good ecosystem is coordinated by the team behind Ecomail, while each product is owned and built by its own team. This enables the products to be autonomous, with shared standards for reliability, security, and craft.
+              {a.leadershipDesc}
             </p>
           </div>
 
           {/* Team photo */}
           <div className="max-w-6xl mx-auto mb-16">
             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-              <img
-                src="/images/team.png"
-                alt="Ecomail Team in Prague"
-                className="w-full h-auto"
-              />
+              <img src="/images/team.png" alt="Ecomail Team in Prague" className="w-full h-auto" />
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {founders.map((founder) => (
-              <div
-                key={founder.name}
-                className="group relative p-10 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300"
-              >
+              <div key={founder.name} className="group relative p-10 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300">
                 <div className="absolute top-8 right-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Quote className="w-16 h-16 text-blue-600" />
                 </div>
@@ -117,21 +99,13 @@ export function About() {
                   <div className="flex items-center gap-6">
                     <div className="relative">
                       <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-blue-100 dark:ring-blue-900">
-                        <img
-                          src={founder.image}
-                          alt={founder.name}
-                          className="w-full h-full object-cover"
-                        />
+                        <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
                       </div>
                       <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 border-2 border-white dark:border-gray-800" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {founder.name}
-                      </h3>
-                      <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-                        {founder.position}
-                      </p>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{founder.name}</h3>
+                      <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">{founder.position}</p>
                     </div>
                   </div>
                   <blockquote className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">

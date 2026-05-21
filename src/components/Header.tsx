@@ -3,22 +3,25 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Our Tools", href: "/services" },
-  { label: "Blog", href: "/blog" },
-  { label: "Newsroom", href: "/news" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
-];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+
+  const navItems = [
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.tools, href: "/services" },
+    { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.newsroom, href: "/news" },
+    { label: t.nav.careers, href: "/careers" },
+    { label: t.nav.contact, href: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 80);
@@ -72,7 +75,8 @@ export function Header() {
             </nav>
 
             {/* Right controls */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
+              <LanguageSwitcher />
               <ThemeToggle />
               <Button
                 variant="ghost"

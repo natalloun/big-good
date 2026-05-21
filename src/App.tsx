@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
@@ -45,9 +46,11 @@ function Layout() {
 export default function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="biggood-theme">
-      <BrowserRouter>
-        <Layout />
-      </BrowserRouter>
+      <LanguageProvider>
+        <BrowserRouter>
+          <Layout />
+        </BrowserRouter>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

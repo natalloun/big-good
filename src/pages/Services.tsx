@@ -2,51 +2,20 @@ import { ArrowRight, ExternalLink, Mail, Shield, FileText, Send } from "lucide-r
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const products = [
-  {
-    icon: Mail,
-    name: "Ecomail",
-    tagline: "Email Marketing Platform",
-    description: "Combines ease of use with powerful features like segmentation, automation workflows, and built-in analytics. Includes Topol's email editor.",
-    category: "Marketing",
-    color: "from-green-600/75 to-emerald-500/75",
-    image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80",
-    url: "https://ecomail.cz/",
-  },
-  {
-    icon: FileText,
-    name: "Topol",
-    tagline: "Email Template Editor",
-    description: "An intuitive drag-and-drop email editor, available both as an embeddable plugin for SaaS platforms and as a standalone app for marketers.",
-    category: "Design",
-    color: "from-gray-900/75 to-gray-700/75",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
-    url: "https://topol.io/",
-  },
-  {
-    icon: Shield,
-    name: "DMARCeye",
-    tagline: "Email Security Platform",
-    description: "A DMARC monitoring platform that helps protect domains from unauthorized email use and improves deliverability using a guidance-based approach.",
-    category: "Security",
-    color: "from-orange-600/75 to-orange-400/75",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
-    url: "https://dmarceye.com/",
-  },
-  {
-    icon: Send,
-    name: "Lettr",
-    tagline: "Transactional Email Platform",
-    description: "A unique platform that lets developers set up sending once, and lets marketing and product teams manage templates via an intuitive, no-code editor.",
-    category: "Developer Tool",
-    color: "from-purple-800/75 to-purple-600/75",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
-    url: "https://lettr.com/",
-  },
+const productIcons = [Mail, FileText, Shield, Send];
+const productMeta = [
+  { color: "from-green-600/75 to-emerald-500/75", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80", url: "https://ecomail.cz/" },
+  { color: "from-gray-900/75 to-gray-700/75", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", url: "https://topol.io/" },
+  { color: "from-orange-600/75 to-orange-400/75", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", url: "https://dmarceye.com/" },
+  { color: "from-purple-800/75 to-purple-600/75", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", url: "https://lettr.com/" },
 ];
 
 export function Services() {
+  const { t } = useLanguage();
+  const s = t.services;
+
   return (
     <>
       {/* Hero */}
@@ -57,12 +26,8 @@ export function Services() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
-              Lightweight. Focused. Market-Proven.
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal max-w-3xl mx-auto">
-              Each tool covers a specific and essential part of the email and content stack. Start with one product and add more over time, without committing to an all‑in‑one suite.
-            </p>
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">{s.heroHeading}</h1>
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal max-w-3xl mx-auto">{s.heroDesc}</p>
           </div>
         </div>
       </section>
@@ -70,18 +35,19 @@ export function Services() {
       {/* Products grid */}
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {products.map((product) => {
-              const Icon = product.icon;
+          <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {s.products.map((product, i) => {
+              const Icon = productIcons[i];
+              const meta = productMeta[i];
               return (
                 <Card
                   key={product.name}
                   className="group hover-lift hover-scale rounded-3xl border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer"
-                  onClick={() => window.open(product.url, "_blank", "noopener,noreferrer")}
+                  onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
                 >
                   <div className="relative h-44 overflow-hidden">
-                    <img src={product.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${product.color}`} />
+                    <img src={meta.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${meta.color}`} />
                     <div className="relative z-10 h-full flex items-center justify-center">
                       <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
                         <Icon className="w-10 h-10 text-white" />
@@ -91,22 +57,16 @@ export function Services() {
                       {product.category}
                     </span>
                   </div>
-
                   <CardHeader className="pb-2">
                     <CardTitle className="text-2xl font-bold">{product.name}</CardTitle>
                     <CardDescription className="text-base font-medium">{product.tagline}</CardDescription>
                   </CardHeader>
-
                   <CardContent className="space-y-4">
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {product.description}
-                    </p>
-                    {product.url && (
-                      <Button variant="ghost" className="w-full justify-center font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                        Visit website
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    )}
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{product.description}</p>
+                    <Button variant="ghost" className="w-full justify-center font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                      {s.visitWebsite}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
                   </CardContent>
                 </Card>
               );
@@ -115,12 +75,10 @@ export function Services() {
 
           {/* Bottom CTA */}
           <div className="text-center mt-20 space-y-4">
-            <p className="text-xl text-gray-600 dark:text-gray-400 font-medium">
-              Want to see how they work together?
-            </p>
+            <p className="text-xl text-gray-600 dark:text-gray-400 font-medium">{s.bottomCta}</p>
             <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-10 py-7 text-lg font-semibold hover-lift" asChild>
               <Link to="/contact">
-                Explore the Ecosystem
+                {s.exploreCta}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

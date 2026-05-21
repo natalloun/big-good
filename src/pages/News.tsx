@@ -1,7 +1,11 @@
 import { ExternalLink } from "lucide-react";
 import { newsItems } from "@/data/news-items";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function News() {
+  const { t } = useLanguage();
+  const n = t.news;
+
   return (
     <>
       {/* Hero */}
@@ -11,12 +15,8 @@ export function News() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
-              News About Big Good
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal">
-              Articles, press releases, industry reports, and insights from our experts.
-            </p>
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">{n.heading}</h1>
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal">{n.description}</p>
           </div>
         </div>
       </section>
@@ -35,17 +35,13 @@ export function News() {
               >
                 <div className="flex flex-col h-full space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
-                      {item.outlet}
-                    </span>
+                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">{item.outlet}</span>
                     <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-grow">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {item.date}
-                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{item.date}</p>
                 </div>
               </a>
             ))}
