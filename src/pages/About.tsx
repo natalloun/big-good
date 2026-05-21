@@ -1,39 +1,35 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Users, Heart, Globe } from "lucide-react";
+import { Code, Users, Quote } from "lucide-react";
 
-const values = [
+const audienceCards = [
   {
     icon: Code,
-    title: "Technologie na prvním místě",
-    description: "Stavíme produkty s důrazem na kvalitu kódu, výkon a inovace.",
-    color: "from-blue-500 to-blue-600",
+    title: "For Dev, Product, and Security Teams",
+    description: "Building blocks for the email stack: Template editing, transactional workflows, and domain security.",
+    color: "from-blue-500 to-purple-600",
   },
   {
     icon: Users,
-    title: "Zákazník v centru",
-    description: "Každé rozhodnutí děláme s ohledem na potřeby a zpětnou vazbu zákazníků.",
-    color: "from-purple-500 to-purple-600",
-  },
-  {
-    icon: Heart,
-    title: "Vášeň pro detail",
-    description: "Věříme, že kvalitní produkt je v detailech — UX, rychlost, spolehlivost.",
-    color: "from-pink-500 to-pink-600",
-  },
-  {
-    icon: Globe,
-    title: "Globální myšlení",
-    description: "Navrhujeme produkty od začátku jako globální — vícejazyčné, škálovatelné.",
-    color: "from-green-500 to-green-600",
+    title: "For Marketing Teams",
+    description: "Intuitive tools for content and email performance: design, editing, automation, and deliverability.",
+    color: "from-green-500 to-emerald-600",
   },
 ];
 
-const team = [
-  { name: "Jan Novák", role: "CEO & Zakladatel", initials: "JN" },
-  { name: "Petra Svobodová", role: "CTO", initials: "PS" },
-  { name: "Martin Krejčí", role: "Head of Product", initials: "MK" },
-  { name: "Lucie Horáková", role: "Head of Marketing", initials: "LH" },
+const founders = [
+  {
+    name: "Jakub Stupka",
+    position: "Co-founder at Ecomail",
+    initials: "JS",
+    quote: "We don't productize ideas. We productize tools that have already proven themselves in production. Each one solves a real problem extremely well, without unnecessary complexity.",
+  },
+  {
+    name: "Jan Tlapák",
+    position: "Co-founder at Ecomail",
+    initials: "JT",
+    quote: "As new market needs arise, we'll keep spinning out specialized, standalone products based on our intimate knowledge of email and content infrastructure, stemming from over 10 years of experience.",
+  },
 ];
 
 export function About() {
@@ -48,43 +44,39 @@ export function About() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
             <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm font-medium">
-              O společnosti
+              Big Good: Why and For Whom?
             </Badge>
-            <h1 className="text-6xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
-              Jsme{" "}
-              <span className="bg-gradient-to-r from-blue-700 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-                Big Good
-              </span>
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
+              Internal Tools Made Standalone Products
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              Česká technologická společnost budující digitální produkty pro globální trh. Náš ekosystém nástrojů pro email marketing pomáhá firmám po celém světě efektivněji komunikovat.
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto font-normal">
+              Each Big Good product began as something we needed ourselves, proven in real workflows and built to scale. Now they're available globally, with their own teams and roadmaps.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Values */}
+      {/* Audience Cards */}
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
-            <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm">
-              Naše hodnoty
-            </Badge>
-            <h2 className="text-5xl font-black text-gray-900 dark:text-white tracking-tight">
-              Co nás pohání
-            </h2>
-          </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {values.map((v) => {
-              const Icon = v.icon;
+            {audienceCards.map((card) => {
+              const Icon = card.icon;
               return (
-                <Card key={v.title} className="group hover-lift rounded-3xl border-gray-200 dark:border-gray-700 overflow-hidden">
-                  <CardContent className="p-10 space-y-5">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${v.color} flex items-center justify-center shadow-lg`}>
-                      <Icon className="w-7 h-7 text-white" />
+                <Card key={card.title} className="group relative p-10 rounded-3xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
+                  <CardContent className="relative z-10 space-y-6 p-0">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${card.color} flex items-center justify-center shadow-lg`}>
+                      <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{v.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{v.description}</p>
+                    <div className="space-y-3">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {card.title}
+                      </h3>
+                      <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {card.description}
+                      </p>
+                    </div>
                   </CardContent>
                 </Card>
               );
@@ -93,33 +85,52 @@ export function About() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Leadership */}
       <section className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
-            <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm">
-              Tým
+          <div className="max-w-4xl mx-auto text-center mb-20 space-y-6">
+            <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm font-medium">
+              Who Is Big Good?
             </Badge>
-            <h2 className="text-5xl font-black text-gray-900 dark:text-white tracking-tight">
-              Lidé za produkty
+            <h2 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
+              Led by Ecomail
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              Zkušený tým s vášní pro digitální produkty a inovace.
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-normal">
+              The Big Good ecosystem is coordinated by the team behind Ecomail, while each product is owned and built by its own team. This enables the products to be autonomous, with shared standards for reliability, security, and craft.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {team.map((member) => (
-              <Card key={member.name} className="hover-lift rounded-2xl border-gray-200 dark:border-gray-700 text-center">
-                <CardContent className="p-6 space-y-3">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mx-auto shadow-md">
-                    <span className="text-white font-bold text-lg">{member.initials}</span>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {founders.map((founder) => (
+              <div
+                key={founder.name}
+                className="group relative p-10 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300"
+              >
+                <div className="absolute top-8 right-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <Quote className="w-16 h-16 text-blue-600" />
+                </div>
+                <div className="relative z-10 space-y-6">
+                  <div className="flex items-center gap-6">
+                    <div className="relative">
+                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center ring-4 ring-blue-100 dark:ring-blue-900">
+                        <span className="text-white font-bold text-xl">{founder.initials}</span>
+                      </div>
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 border-2 border-white dark:border-gray-800" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                        {founder.name}
+                      </h3>
+                      <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+                        {founder.position}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold text-gray-900 dark:text-white text-sm">{member.name}</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{member.role}</p>
-                  </div>
-                </CardContent>
-              </Card>
+                  <blockquote className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                    "{founder.quote}"
+                  </blockquote>
+                </div>
+              </div>
             ))}
           </div>
         </div>
