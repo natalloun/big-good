@@ -10,10 +10,10 @@ const stats = [
 ];
 
 const toolPreviews = [
-  { name: "Ecomail", tagline: "Email Marketing Platform", color: "from-green-500 to-emerald-500", category: "Marketing" },
-  { name: "Topol", tagline: "Email Template Editor", color: "from-gray-800 to-gray-600", category: "Design" },
-  { name: "DMARCeye", tagline: "Email Security Platform", color: "from-orange-500 to-orange-400", category: "Security" },
-  { name: "Lettr", tagline: "Transactional Email Platform", color: "from-purple-700 to-gray-800", category: "Developer Tool" },
+  { name: "Ecomail", tagline: "Email Marketing Platform", color: "from-green-600/75 to-emerald-500/75", category: "Marketing", url: "https://ecomail.cz/", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80" },
+  { name: "Topol", tagline: "Email Template Editor", color: "from-gray-900/75 to-gray-700/75", category: "Design", url: "https://topol.io/", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" },
+  { name: "DMARCeye", tagline: "Email Security Platform", color: "from-orange-600/75 to-orange-400/75", category: "Security", url: "https://dmarceye.com/", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" },
+  { name: "Lettr", tagline: "Transactional Email Platform", color: "from-purple-800/75 to-purple-600/75", category: "Developer Tool", url: "https://lettr.com/", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
 ];
 
 export function Home() {
@@ -93,9 +93,15 @@ export function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {toolPreviews.map((tool) => (
-              <Card key={tool.name} className="group hover-lift hover-scale border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden cursor-pointer">
-                <div className={`h-32 bg-gradient-to-br ${tool.color} flex items-center justify-center`}>
-                  <span className="text-white font-black text-2xl">{tool.name[0]}</span>
+              <Card
+                key={tool.name}
+                className="group hover-lift hover-scale border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden cursor-pointer"
+                onClick={() => window.open(tool.url, "_blank", "noopener,noreferrer")}
+              >
+                <div className="relative h-32 overflow-hidden">
+                  <img src={tool.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.color}`} />
+                  <span className="relative z-10 flex items-center justify-center h-full text-white font-black text-2xl drop-shadow">{tool.name[0]}</span>
                 </div>
                 <CardContent className="p-6 space-y-2">
                   <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">{tool.category}</span>
