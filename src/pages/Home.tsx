@@ -29,7 +29,7 @@ export function Home() {
         <div className="container mx-auto px-4 relative z-10 pt-16 pb-20">
           <div className="max-w-5xl mx-auto text-center space-y-6 animate-fade-in">
             <h1 className="space-y-2">
-              <span className="block text-7xl md:text-[10rem] lg:text-[12rem] font-black tracking-tight leading-none pb-4 bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 bg-clip-text text-transparent">
+              <span className="block text-7xl md:text-[10rem] lg:text-[12rem] font-black tracking-tight leading-none pb-[0.2em] bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 bg-clip-text text-transparent">
                 Big Good
               </span>
               <span className="block text-xl md:text-3xl font-semibold text-gray-700 dark:text-gray-200 tracking-tight max-w-2xl mx-auto leading-snug pt-2">
