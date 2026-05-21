@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Globe, Clock, TrendingUp, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -149,13 +149,33 @@ export function Home() {
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
         </div>
-        <div className="container mx-auto px-4 relative z-10 text-center space-y-6">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight">
-            Come build with us
-          </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto font-normal">
-            We're always looking for talented, passionate people who want to build tools that matter. No corporate BS, just good work and good people.
-          </p>
+        <div className="container mx-auto px-4 relative z-10 text-center space-y-10">
+          <div className="space-y-6">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight">
+              Come build with us
+            </h2>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto font-normal">
+              We're always looking for talented, passionate people who want to build tools that matter. No corporate BS, just good work and good people.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            {[
+              { icon: Globe, title: "Work from anywhere", desc: "Fully remote team across Europe" },
+              { icon: Clock, title: "Flexible hours", desc: "Work when you're most productive" },
+              { icon: TrendingUp, title: "Learn & grow", desc: "Work on multiple products" },
+              { icon: Heart, title: "Real impact", desc: "Your work matters from day one" },
+            ].map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="p-7 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300 text-left">
+                <div className="w-11 h-11 rounded-2xl bg-white/20 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="font-bold text-white mb-1">{title}</h3>
+                <p className="text-white/70 text-sm">{desc}</p>
+              </div>
+            ))}
+          </div>
+
           <Button
             size="lg"
             className="rounded-2xl bg-white text-blue-600 hover:bg-gray-100 shadow-lg hover:shadow-xl px-8 py-6 text-base font-semibold hover-lift"

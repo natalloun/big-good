@@ -1,25 +1,5 @@
 import { ExternalLink } from "lucide-react";
-
-const mediaItems = [
-  {
-    outlet: "IT Brief UK",
-    title: "Topol.io Spins Out from Ecomail to Offer Standalone Email Editor",
-    date: "September 2025",
-    url: "https://itbrief.co.uk/story/topol-io-spins-out-from-ecomail-to-offer-standalone-email-editor",
-  },
-  {
-    outlet: "Email Tool Tester",
-    title: "The 6 Best Stripo Alternatives in 2026",
-    date: "January 2026",
-    url: "https://www.emailtooltester.com/en/blog/stripo-alternatives/",
-  },
-  {
-    outlet: "IT Brief UK",
-    title: "Topol Unveils Lettr: Transactional Email Tool for Laravel",
-    date: "February 2026",
-    url: "https://itbrief.co.uk/story/topol-unveils-lettr-transactional-email-tool-for-laravel",
-  },
-];
+import { newsItems } from "@/data/news-items";
 
 export function News() {
   return (
@@ -45,7 +25,7 @@ export function News() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {mediaItems.map((item, index) => (
+            {newsItems.map((item, index) => (
               <a
                 key={index}
                 href={item.url}
