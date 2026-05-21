@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -29,11 +29,6 @@ export function Home() {
 
         <div className="container mx-auto px-4 relative z-10 pt-20 pb-32">
           <div className="max-w-5xl mx-auto text-center space-y-10 animate-fade-in">
-            <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm font-medium gap-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              Development • Product • Marketing
-            </Badge>
-
             <h1 className="space-y-4">
               <span className="block text-7xl md:text-9xl font-black tracking-tight bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 bg-clip-text text-transparent">
                 Big Good
