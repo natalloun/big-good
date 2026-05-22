@@ -121,7 +121,7 @@ export function Contact() {
                 <Card className="rounded-2xl border-gray-200 dark:border-gray-700">
                   <CardContent className="p-8 space-y-6">
                     {[
-                      { icon: MapPin, label: c.address, main: "Big Good s.r.o.", sub: "Prague, Czech Republic" },
+                      { icon: MapPin, label: c.address, main: "ECOMAIL.CZ, s.r.o.", sub: "Na příkopě 388/1, 110 00 Praha 1" },
                       { icon: Mail, label: "Email", main: "pr@ecomail.cz", href: "mailto:pr@ecomail.cz" },
                       { icon: Globe, label: c.follow, main: "LinkedIn", href: "https://www.linkedin.com/company/big-good" },
                     ].map(({ icon: Icon, label, main, sub, href }) => (
