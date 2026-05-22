@@ -8,10 +8,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const perkIcons = [Globe, Clock, TrendingUp, Heart];
 
 const toolMeta = [
-  { color: "from-green-600/75 to-emerald-500/75", url: "https://ecomail.cz/", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80" },
-  { color: "from-gray-900/75 to-gray-700/75", url: "https://topol.io/", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" },
-  { color: "from-orange-600/75 to-orange-400/75", url: "https://dmarceye.com/", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" },
-  { color: "from-purple-800/75 to-purple-600/75", url: "https://lettr.com/", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
+  { bg: "bg-green-50 dark:bg-gray-800", url: "https://ecomail.cz/", logo: "/images/ecomail-logo.svg" },
+  { bg: "bg-slate-50 dark:bg-gray-800", url: "https://topol.io/", logo: "/images/topol-logo.svg" },
+  { bg: "bg-orange-50 dark:bg-gray-800", url: "https://dmarceye.com/", logo: "/images/dmarceye-logo.svg" },
+  { bg: "bg-purple-50 dark:bg-gray-800", url: "https://lettr.com/", logo: "/images/lettr-logo.svg" },
 ];
 
 const statKeys = ["tools", "users", "countries"] as const;
@@ -92,10 +92,12 @@ export function Home() {
                   className="group hover-lift hover-scale border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden cursor-pointer"
                   onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
                 >
-                  <div className="relative h-32 overflow-hidden">
-                    <img src={meta.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${meta.color}`} />
-                    <span className="relative z-10 flex items-center justify-center h-full text-white font-black text-2xl drop-shadow">{product.name[0]}</span>
+                  <div className={`h-32 flex items-center justify-center px-6 ${meta.bg}`}>
+                    <img
+                      src={meta.logo}
+                      alt={product.name}
+                      className="h-8 w-auto object-contain max-w-[80%] dark:invert"
+                    />
                   </div>
                   <CardContent className="p-6 space-y-2">
                     <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">{product.category}</span>
