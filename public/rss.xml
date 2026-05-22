@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Big Good Blog</title>
+    <link>https://biggood.netlify.app/blog</link>
+    <description>Insights, product updates, and analysis from the Big Good ecosystem — Ecomail, Topol, DMARCeye, and Lettr.</description>
+    <language>en</language>
+    <lastBuildDate>Wed, 21 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://biggood.netlify.app/rss.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Article Title Goes Here</title>
+      <link>https://biggood.netlify.app/blog/placeholder-announcement-1</link>
+      <guid>https://biggood.netlify.app/blog/placeholder-announcement-1</guid>
+      <pubDate>Thu, 01 May 2026 00:00:00 +0000</pubDate>
+      <category>Announcement</category>
+      <author>Big Good Team</author>
+      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+    </item>
+
+    <item>
+      <title>Article Title Goes Here</title>
+      <link>https://biggood.netlify.app/blog/placeholder-analysis-1</link>
+      <guid>https://biggood.netlify.app/blog/placeholder-analysis-1</guid>
+      <pubDate>Sun, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <category>Analysis</category>
+      <author>Big Good Team</author>
+      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+    </item>
+
+    <item>
+      <title>Article Title Goes Here</title>
+      <link>https://biggood.netlify.app/blog/placeholder-product-update-1</link>
+      <guid>https://biggood.netlify.app/blog/placeholder-product-update-1</guid>
+      <pubDate>Thu, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <category>Product Update</category>
+      <author>Topol Team</author>
+      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+    </item>
+
+    <item>
+      <title>Article Title Goes Here</title>
+      <link>https://biggood.netlify.app/blog/placeholder-case-study-1</link>
+      <guid>https://biggood.netlify.app/blog/placeholder-case-study-1</guid>
+      <pubDate>Fri, 28 Mar 2026 00:00:00 +0000</pubDate>
+      <category>Case Study</category>
+      <author>DMARCeye Team</author>
+      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+    </item>
+
+    <item>
+      <title>Article Title Goes Here</title>
+      <link>https://biggood.netlify.app/blog/placeholder-engineering-1</link>
+      <guid>https://biggood.netlify.app/blog/placeholder-engineering-1</guid>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+      <category>Engineering</category>
+      <author>Lettr Team</author>
+      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+    </item>
+
+  </channel>
+</rss>

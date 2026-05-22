@@ -1,0 +1,42 @@
+# Big Good
+
+> Big Good is the parent ecosystem of email marketing and deliverability products built and operated by ECOMAIL.CZ, s.r.o., a Czech company based in Prague.
+
+## Products
+
+- **Ecomail** — Email marketing platform for businesses of all sizes. Features include campaign creation, automation, segmentation, and analytics.
+- **Topol** — Drag-and-drop email template builder. Used by marketers and developers to design responsive HTML emails.
+- **DMARCeye** — DMARC monitoring and reporting tool. Helps organizations protect their email domains from spoofing and phishing.
+- **Lettr** — Email deliverability and sending infrastructure service.
+
+## Company
+
+ECOMAIL.CZ, s.r.o.
+Na příkopě 388/1, Staré Město, 110 00 Praha 1, Czech Republic
+IČO: 02762943
+Contact: support@ecomail.cz
+
+## Pages
+
+- / — Homepage with overview of the Big Good ecosystem
+- /about — About Big Good, the company mission, and the team
+- /services — Overview of products and services
+- /blog — Blog with articles, product updates, case studies, and analysis
+- /news — Latest news from the Big Good ecosystem
+- /careers — Open positions and career opportunities
+- /contact — Contact form and company information
+- /privacy-policy — Privacy policy (Czech, GDPR-compliant)
+- /terms-of-service — Terms of service (Czech)
+- /cookie-policy — Cookie policy including Google Analytics usage (Czech)
+
+## Content
+
+The blog covers topics including email marketing best practices, product announcements, deliverability analysis, engineering insights, and case studies from the Ecomail, Topol, DMARCeye, and Lettr ecosystems.
+
+## Sitemap
+
+https://biggood.netlify.app/sitemap.xml
+
+## RSS Feed
+
+https://biggood.netlify.app/rss.xml
