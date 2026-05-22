@@ -15,7 +15,7 @@ export function TermsOfService() {
               Podmínky použití
             </h1>
             <p className="text-gray-500 dark:text-gray-400 text-sm">
-              Datum účinnosti: [DOPLŇTE DATUM] &nbsp;·&nbsp; Poslední aktualizace: [DOPLŇTE DATUM]
+              Datum účinnosti: 21. 5. 2026 &nbsp;·&nbsp; Poslední aktualizace: 21. 5. 2026
             </p>
           </div>
         </div>
