@@ -95,7 +95,7 @@ export function PrivacyPolicy() {
               <BulletList items={[
                 "přístupu ke svým osobním údajům",
                 "opravy nepřesných údajů",
-                "výmazu údajů („právo být zapomenut")",
+                "výmazu údajů („právo být zapomenut“)",
                 "omezení zpracování",
                 "přenositelnosti údajů",
                 "vznést námitku proti zpracování",
