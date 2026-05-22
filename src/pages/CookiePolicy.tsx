@@ -26,32 +26,43 @@ export function CookiePolicy() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto space-y-12 text-gray-700 dark:text-gray-300 leading-relaxed">
 
-            <Section number="1" title="Technické a analytické údaje">
+            <Section number="1" title="Jaké cookies používáme">
               <p>
-                Automaticky shromažďujeme anonymizované nebo pseudonymizované údaje o návštěvnosti,
-                jako jsou IP adresa, typ prohlížeče, navštívené stránky a doba návštěvy –
-                prostřednictvím analytických nástrojů.
+                Na tomto webu používáme analytické cookies prostřednictvím nástroje{" "}
+                <strong>Google Analytics</strong> (provozovaného společností Google LLC). Tyto cookies
+                nám pomáhají porozumět tomu, jak návštěvníci web používají.
               </p>
+              <p className="mt-3">Konkrétně shromažďujeme:</p>
+              <BulletList items={[
+                "anonymizovanou IP adresu",
+                "typ prohlížeče a operačního systému",
+                "navštívené stránky a dobu návštěvy",
+                "zdroj návštěvy (odkud jste přišli)",
+              ]} />
             </Section>
 
             <Section number="2" title="Účel zpracování analytických dat">
               <p>
-                Analytika webu: zpracování probíhá za účelem zlepšení fungování webu; právní základ
+                Analytická data zpracováváme za účelem zlepšení fungování a obsahu webu. Právní základ
                 je oprávněný zájem nebo váš souhlas (čl. 6 odst. 1 písm. a) nebo f) GDPR).
               </p>
             </Section>
 
-            <Section number="3" title="Předávání do třetích zemí">
+            <Section number="3" title="Google Analytics a předávání dat">
               <p>
-                Pokud využíváme služby třetích stran se sídlem mimo EHP (např. analytické nástroje),
-                probíhá přenos dat v souladu se standardními smluvními doložkami Evropské komise.
+                Data shromážděná přes Google Analytics jsou zpracovávána společností Google LLC (USA).
+                Přenos probíhá v souladu se standardními smluvními doložkami Evropské komise.
+                Více informací:{" "}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  policies.google.com/privacy
+                </a>
               </p>
             </Section>
 
             <Section number="4" title="Doba uchování analytických dat">
               <p>
-                Analytické údaje jsou uchovávány dle nastavení příslušného nástroje, zpravidla do
-                14 měsíců.
+                Google Analytics uchovává data zpravidla po dobu <strong>14 měsíců</strong>, poté jsou
+                automaticky smazána.
               </p>
             </Section>
 

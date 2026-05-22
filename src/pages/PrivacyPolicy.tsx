@@ -72,14 +72,19 @@ export function PrivacyPolicy() {
               </p>
               <BulletList items={[
                 "poskytovatelů technických služeb (hosting, e-mailové systémy, analytika), kteří jsou vázáni smlouvou o zpracování osobních údajů",
+                "Google LLC — v rámci nástroje Google Analytics pro analýzu návštěvnosti webu",
                 "případů, kdy nám to ukládá zákon",
               ]} />
             </Section>
 
             <Section number="5" title="Předávání do třetích zemí">
               <p>
-                Pokud využíváme služby třetích stran se sídlem mimo EHP (např. analytické nástroje),
-                probíhá přenos dat v souladu se standardními smluvními doložkami Evropské komise.
+                Využíváme nástroj <strong>Google Analytics</strong> provozovaný společností Google LLC
+                se sídlem v USA. Přenos osobních údajů probíhá na základě standardních smluvních
+                doložek Evropské komise. Více informací o ochraně dat Google naleznete na{" "}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  policies.google.com/privacy
+                </a>.
               </p>
             </Section>
 
