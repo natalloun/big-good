@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { newsItems } from "@/data/news-items";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -8,6 +9,11 @@ export function News() {
 
   return (
     <>
+      <SEO
+        title="Novinky | Big Good"
+        description="Nejnovější zprávy a tiskové zprávy z ekosystému Big Good — Ecomail, Topol, DMARCeye a Lettr."
+        url="/news"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

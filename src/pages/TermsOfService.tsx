@@ -1,8 +1,14 @@
 import type { ReactNode } from "react";
+import { SEO } from "@/components/SEO";
 
 export function TermsOfService() {
   return (
     <>
+      <SEO
+        title="Podmínky použití | Big Good"
+        description="Podmínky použití webu Big Good provozovaného společností ECOMAIL.CZ, s.r.o. Platné od 21. 5. 2026."
+        url="/terms-of-service"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { useState } from "react";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -99,6 +100,11 @@ export function Blog() {
 
   return (
     <>
+      <SEO
+        title="Blog | Big Good"
+        description="Postřehy, aktualizace produktů, analýzy a technické články z ekosystému Big Good — Ecomail, Topol, DMARCeye a Lettr."
+        url="/blog"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

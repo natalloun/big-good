@@ -1,4 +1,5 @@
 import { ArrowRight, Globe, Clock, TrendingUp, Heart } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -10,6 +11,11 @@ export function Careers() {
 
   return (
     <>
+      <SEO
+        title="Kariéra | Big Good"
+        description="Připojte se k týmu Big Good. Prozkoumejte otevřené pozice v Ecomail, Topol, DMARCeye a Lettr."
+        url="/careers"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-900 dark:to-purple-900 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none">

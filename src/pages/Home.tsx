@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { ArrowRight, Globe, Clock, TrendingUp, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,6 +23,11 @@ export function Home() {
 
   return (
     <>
+      <SEO
+        title="Big Good | Email Marketing Ecosystem"
+        description="Big Good je ekosystém nástrojů pro e-mailový marketing — Ecomail, Topol, DMARCeye a Lettr. Provozuje ECOMAIL.CZ, s.r.o."
+        url="/"
+      />
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

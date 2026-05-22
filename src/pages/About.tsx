@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 import { Code, Users, Quote } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -27,6 +28,11 @@ export function About() {
 
   return (
     <>
+      <SEO
+        title="O nás | Big Good"
+        description="Poznejte tým za Big Good — česká společnost budující e-mailové nástroje, které používají tisíce firem. ECOMAIL.CZ, s.r.o."
+        url="/about"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

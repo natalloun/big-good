@@ -1,4 +1,5 @@
 import { ArrowRight, ExternalLink, Mail, Shield, FileText, Send } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -18,6 +19,11 @@ export function Services() {
 
   return (
     <>
+      <SEO
+        title="Produkty a služby | Big Good"
+        description="Objevte nástroje Big Good: Ecomail pro e-mailový marketing, Topol pro design šablon, DMARCeye pro monitorování DMARC a Lettr pro odesílání e-mailů."
+        url="/services"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

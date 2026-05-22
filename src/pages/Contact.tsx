@@ -1,4 +1,5 @@
 import { MapPin, Globe, Mail } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -35,6 +36,11 @@ export function Contact() {
 
   return (
     <>
+      <SEO
+        title="Kontakt | Big Good"
+        description="Spojte se s týmem Big Good. ECOMAIL.CZ, s.r.o., Na příkopě 388/1, 110 00 Praha 1. E-mail: support@ecomail.cz"
+        url="/contact"
+      />
       {/* CTA Banner */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

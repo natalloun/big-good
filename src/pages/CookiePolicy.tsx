@@ -1,8 +1,14 @@
 import type { ReactNode } from "react";
+import { SEO } from "@/components/SEO";
 
 export function CookiePolicy() {
   return (
     <>
+      <SEO
+        title="Zásady cookies | Big Good"
+        description="Informace o používání cookies na webu Big Good, včetně Google Analytics. Provozovatel: ECOMAIL.CZ, s.r.o."
+        url="/cookie-policy"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -104,5 +110,18 @@ function Section({ number, title, children }: { number: string; title: string; c
       </h2>
       <div className="space-y-3 pl-11">{children}</div>
     </div>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2 mt-2">
+      {items.map((item, i) => (
+        <li key={i} className="flex gap-2">
+          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
   );
 }

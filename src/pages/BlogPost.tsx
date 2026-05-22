@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { ArrowLeft, Calendar, Tag, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getPostBySlug, formatDate } from "@/data/blog-posts";
@@ -39,6 +40,14 @@ export function BlogPost() {
 
   return (
     <>
+      <SEO
+        title={`${post.title} | Big Good Blog`}
+        description={post.excerpt}
+        url={`/blog/${post.slug}`}
+        type="article"
+        author={post.author}
+        publishedTime={post.date}
+      />
       {/* Header */}
       <section className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
