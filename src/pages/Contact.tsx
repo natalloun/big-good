@@ -16,17 +16,17 @@ export function Contact() {
     e.preventDefault();
     setFormState((s) => ({ ...s, sending: true }));
     try {
-      await fetch("/", {
+      const res = await fetch("https://formsubmit.co/ajax/pr@ecomail.cz", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          "form-name": "contact",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
           name: formState.name,
           email: formState.email,
           company: formState.company,
           message: formState.message,
-        }).toString(),
+        }),
       });
+      if (!res.ok) throw new Error();
       setFormState((s) => ({ ...s, sending: false, sent: true }));
     } catch {
       setFormState((s) => ({ ...s, sending: false }));
@@ -93,9 +93,7 @@ export function Contact() {
                     </CardContent>
                   </Card>
                 ) : (
-                  <form name="contact" onSubmit={handleSubmit} className="space-y-4" data-netlify="true" netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="contact" />
-                    <input type="hidden" name="bot-field" />
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     {[
                       { key: "name", label: c.name, type: "text", required: true, placeholder: "Jan Novák" },
                       { key: "email", label: c.email, type: "email", required: true, placeholder: "jan@company.com" },
