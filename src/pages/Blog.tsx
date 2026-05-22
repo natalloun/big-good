@@ -26,7 +26,7 @@ const companyColors: Record<BlogCompany, string> = {
   Ecomail:  "bg-green-500",
   Topol:    "bg-gray-700",
   DMARCeye: "bg-orange-500",
-  Lettr:    "bg-purple-700",
+  Lettr:    "bg-[#EC104B]",
 };
 
 function FilterCheckbox({
