@@ -25,23 +25,23 @@ export function Services() {
         url="/services"
       />
       {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative pt-32 pb-20 xl:pt-40 xl:pb-28 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/15 rounded-full blur-3xl animate-float" />
-          <div className="absolute -bottom-20 -left-40 w-72 h-72 bg-purple-400/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+          <div className="absolute -top-40 -right-40 w-80 h-80 xl:w-[28rem] xl:h-[28rem] bg-blue-400/15 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-20 -left-40 w-72 h-72 xl:w-[26rem] xl:h-[26rem] bg-purple-400/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
         </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">{s.heroHeading}</h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal max-w-3xl mx-auto">{s.heroDesc}</p>
+        <div className="container mx-auto px-4 xl:px-10 relative z-10">
+          <div className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto text-center space-y-6 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-gray-900 dark:text-white tracking-tight">{s.heroHeading}</h1>
+            <p className="text-xl md:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-normal max-w-3xl xl:max-w-4xl mx-auto">{s.heroDesc}</p>
           </div>
         </div>
       </section>
 
       {/* Products grid */}
-      <section className="py-24 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <section className="py-24 xl:py-32 2xl:py-40 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4 xl:px-10">
+          <div className="grid md:grid-cols-2 gap-8 xl:gap-10 max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
             {s.products.map((product, i) => {
               const Icon = productIcons[i];
               const meta = productMeta[i];
@@ -51,25 +51,25 @@ export function Services() {
                   className="group hover-lift hover-scale rounded-3xl border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer"
                   onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
                 >
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-44 xl:h-56 2xl:h-64 overflow-hidden">
                     <img src={meta.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
                     <div className={`absolute inset-0 bg-gradient-to-br ${meta.color}`} />
                     <div className="relative z-10 h-full flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                        <Icon className="w-10 h-10 text-white" />
+                      <div className="w-20 h-20 xl:w-24 xl:h-24 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                        <Icon className="w-10 h-10 xl:w-12 xl:h-12 text-white" />
                       </div>
                     </div>
-                    <span className="absolute top-4 right-4 z-10 text-xs font-semibold text-white/90 bg-white/15 px-3 py-1 rounded-full">
+                    <span className="absolute top-4 right-4 z-10 text-xs xl:text-sm font-semibold text-white/90 bg-white/15 px-3 py-1 rounded-full">
                       {product.category}
                     </span>
                   </div>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-2xl font-bold">{product.name}</CardTitle>
-                    <CardDescription className="text-base font-medium">{product.tagline}</CardDescription>
+                  <CardHeader className="pb-2 xl:pb-3">
+                    <CardTitle className="text-2xl xl:text-3xl font-bold">{product.name}</CardTitle>
+                    <CardDescription className="text-base xl:text-lg font-medium">{product.tagline}</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{product.description}</p>
-                    <Button variant="ghost" className="w-full justify-center font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <CardContent className="space-y-4 xl:space-y-5">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed xl:text-lg">{product.description}</p>
+                    <Button variant="ghost" className="w-full justify-center font-semibold xl:text-base group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       {s.visitWebsite}
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
@@ -80,9 +80,9 @@ export function Services() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-20 space-y-4">
-            <p className="text-xl text-gray-600 dark:text-gray-400 font-medium">{s.bottomCta}</p>
-            <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-10 py-7 text-lg font-semibold hover-lift" asChild>
+          <div className="text-center mt-20 xl:mt-28 space-y-4">
+            <p className="text-xl xl:text-2xl text-gray-600 dark:text-gray-400 font-medium">{s.bottomCta}</p>
+            <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-10 xl:px-12 py-7 xl:py-8 text-lg xl:text-xl font-semibold hover-lift" asChild>
               <Link to="/contact">
                 {s.exploreCta}
                 <ArrowRight className="ml-2 h-5 w-5" />
