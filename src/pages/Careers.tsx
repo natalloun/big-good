@@ -13,7 +13,7 @@ const openPositions = [
     type: "Full-time",
     tags: ["Pracovní smlouva", "Freelance", "On-site"],
     description: "Kvalitní produkt je základ, ale sám o sobě nestačí. Hledáme proto někoho, kdo nám pomůže dostat nové i stávající funkce Ecomailu k firmám, které chtějí dělat e-mailing lépe.",
-    url: "https://ecomail.cz/kariera/",
+    url: "https://ecomail.cz/kariera/product-marketing-manager-pro-b2b-saas/",
   },
   {
     title: "PPC Specialista pro SaaS",
@@ -22,7 +22,7 @@ const openPositions = [
     type: "Full-time",
     tags: ["On-site"],
     description: "Hledáme PPC specialistu s přesahem do webové analytiky a datové analýzy. Zkušenosti se správou PPC kampaní a Google Analytics jsou nutností.",
-    url: "https://ecomail.cz/kariera/",
+    url: "https://ecomail.cz/kariera/ppc-specialista-pro-saas/",
   },
   {
     title: "Specialista technické podpory pro Polsko",
@@ -31,7 +31,7 @@ const openPositions = [
     type: "Full-time",
     tags: ["Pracovní smlouva", "Freelance", "On-site"],
     description: "Hledáme technického specialistu podpory pro polský trh. Budete vyřizovat technické dotazy a požadavky zákazníků v polštině.",
-    url: "https://ecomail.cz/kariera/",
+    url: "https://ecomail.cz/kariera/specialista-technicke-podpory/",
   },
   {
     title: "Administrativní asistent/ka",
@@ -40,7 +40,7 @@ const openPositions = [
     type: "Full-time / Part-time",
     tags: ["Pracovní smlouva", "Freelance", "On-site"],
     description: "Poznej svět digitálních financí. Hledáme pečlivého asistenta/ku s přesahem do účetnictví a administrativy.",
-    url: "https://ecomail.cz/kariera/",
+    url: "https://ecomail.cz/kariera/administrativni-asistent/",
   },
 ];
 
