@@ -153,7 +153,7 @@ export function Contact() {
                         <div>
                           <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide mb-1">{label}</p>
                           {href ? (
-                            <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{main}</a>
+                            <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors underline underline-offset-2 decoration-gray-400 dark:decoration-gray-500 hover:decoration-blue-600 dark:hover:decoration-blue-400">{main}</a>
                           ) : (
                             <>
                               <p className="font-semibold text-gray-900 dark:text-white">{main}</p>
