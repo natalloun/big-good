@@ -12,12 +12,25 @@ export function Contact() {
     name: "", email: "", company: "", message: "", sent: false, sending: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState((s) => ({ ...s, sending: true }));
-    setTimeout(() => {
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          "form-name": "contact",
+          name: formState.name,
+          email: formState.email,
+          company: formState.company,
+          message: formState.message,
+        }).toString(),
+      });
       setFormState((s) => ({ ...s, sending: false, sent: true }));
-    }, 1000);
+    } catch {
+      setFormState((s) => ({ ...s, sending: false }));
+    }
   };
 
   return (
@@ -80,7 +93,9 @@ export function Contact() {
                     </CardContent>
                   </Card>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form name="contact" onSubmit={handleSubmit} className="space-y-4" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <input type="hidden" name="bot-field" />
                     {[
                       { key: "name", label: c.name, type: "text", required: true, placeholder: "Jan Novák" },
                       { key: "email", label: c.email, type: "email", required: true, placeholder: "jan@company.com" },
@@ -90,6 +105,7 @@ export function Contact() {
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">{label}</label>
                         <input
                           type={type}
+                          name={key}
                           required={required}
                           value={formState[key as keyof typeof formState] as string}
                           onChange={(e) => setFormState((s) => ({ ...s, [key]: e.target.value }))}
@@ -102,6 +118,7 @@ export function Contact() {
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">{c.message}</label>
                       <textarea
                         required
+                        name="message"
                         rows={5}
                         value={formState.message}
                         onChange={(e) => setFormState((s) => ({ ...s, message: e.target.value }))}
