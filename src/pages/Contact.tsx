@@ -17,7 +17,7 @@ export function Contact() {
     e.preventDefault();
     setFormState((s) => ({ ...s, sending: true }));
     try {
-      const res = await fetch("https://formsubmit.co/ajax/cznatalloun@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/jack@topol.io", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
