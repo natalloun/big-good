@@ -11,7 +11,7 @@ const toolMeta = [
   { color: "from-green-600/65 to-emerald-500/65", url: "https://ecomail.cz/", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80", logo: "/images/ecomail-logo.svg" },
   { color: "from-gray-900/65 to-gray-700/65", url: "https://topol.io/", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", logo: "/images/topol-logo.svg" },
   { color: "from-orange-600/65 to-orange-400/65", url: "https://dmarceye.com/", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", logo: "/images/dmarceye-logo.svg" },
-  { color: "from-purple-800/65 to-purple-600/65", url: "https://lettr.com/", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", logo: "/images/lettr-logo.svg" },
+  { color: "from-[#EC104B]/65 to-[#9a0030]/65", url: "https://lettr.com/", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", logo: "/images/lettr-logo.svg" },
 ];
 
 const statKeys = ["tools", "users", "countries"] as const;

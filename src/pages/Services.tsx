@@ -1,16 +1,15 @@
-import { ArrowRight, ExternalLink, Mail, Shield, FileText, Send } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const productIcons = [Mail, FileText, Shield, Send];
 const productMeta = [
-  { color: "from-green-600/75 to-emerald-500/75", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80", url: "https://ecomail.cz/" },
-  { color: "from-gray-900/75 to-gray-700/75", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", url: "https://topol.io/" },
-  { color: "from-orange-600/75 to-orange-400/75", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", url: "https://dmarceye.com/" },
-  { color: "from-purple-800/75 to-purple-600/75", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", url: "https://lettr.com/" },
+  { color: "from-green-600/65 to-emerald-500/65", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80", url: "https://ecomail.cz/", logo: "/images/ecomail-logo.svg" },
+  { color: "from-gray-900/65 to-gray-700/65", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", url: "https://topol.io/", logo: "/images/topol-logo.svg" },
+  { color: "from-orange-600/65 to-orange-400/65", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", url: "https://dmarceye.com/", logo: "/images/dmarceye-logo.svg" },
+  { color: "from-[#EC104B]/65 to-[#9a0030]/65", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", url: "https://lettr.com/", logo: "/images/lettr-logo.svg" },
 ];
 
 export function Services() {
@@ -43,7 +42,6 @@ export function Services() {
         <div className="container mx-auto px-4 xl:px-10">
           <div className="grid md:grid-cols-2 gap-8 xl:gap-10 max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
             {s.products.map((product, i) => {
-              const Icon = productIcons[i];
               const meta = productMeta[i];
               return (
                 <Card
@@ -55,8 +53,8 @@ export function Services() {
                     <img src={meta.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
                     <div className={`absolute inset-0 bg-gradient-to-br ${meta.color}`} />
                     <div className="relative z-10 h-full flex items-center justify-center">
-                      <div className="w-20 h-20 xl:w-24 xl:h-24 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                        <Icon className="w-10 h-10 xl:w-12 xl:h-12 text-white" />
+                      <div className="bg-white/95 rounded-xl px-6 xl:px-8 py-3 xl:py-4">
+                        <img src={meta.logo} alt={product.name} className="h-8 xl:h-10 2xl:h-12 w-auto object-contain max-w-[180px] xl:max-w-[220px]" />
                       </div>
                     </div>
                     <span className="absolute top-4 right-4 z-10 text-xs xl:text-sm font-semibold text-white/90 bg-white/15 px-3 py-1 rounded-full">
