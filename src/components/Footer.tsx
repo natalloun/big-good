@@ -89,9 +89,9 @@ export function Footer() {
             © {new Date().getFullYear()} Big Good. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-gray-400">
-            <span className="hover:text-white transition-colors cursor-pointer">{f.privacy}</span>
-            <span className="hover:text-white transition-colors cursor-pointer">{f.terms}</span>
-            <span className="hover:text-white transition-colors cursor-pointer">{f.cookies}</span>
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">{f.privacy}</Link>
+            <Link to="/terms-of-service" className="hover:text-white transition-colors">{f.terms}</Link>
+            <Link to="/cookie-policy" className="hover:text-white transition-colors">{f.cookies}</Link>
           </div>
         </div>
 
