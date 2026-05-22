@@ -30,7 +30,7 @@ export function PrivacyPolicy() {
               <p>Správcem vašich osobních údajů je:</p>
               <address className="not-italic mt-4 p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 space-y-1 text-sm">
                 <p className="font-bold text-gray-900 dark:text-white text-base">ECOMAIL.CZ, s.r.o.</p>
-                <p>Na Zderaze 1275/15, Praha 2, 120 00</p>
+                <p>Na příkopě 388/1, Staré Město, 110 00 Praha 1</p>
                 <p>IČO: 02762943 &nbsp;·&nbsp; DIČ: CZ02762943</p>
                 <p>
                   E-mail:{" "}
