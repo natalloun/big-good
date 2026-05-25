@@ -29,17 +29,22 @@ export function Home() {
         url="/"
         lang={language}
       />
-      {/* Hero — always exactly one viewport tall */}
-      <section className="relative h-dvh flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Hero — always exactly one viewport tall, content centred below the fixed header */}
+      <section className="relative h-dvh flex flex-col overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 xl:w-[30rem] xl:h-[30rem] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-3xl animate-float" />
           <div className="absolute -bottom-40 -left-40 w-96 h-96 xl:w-[36rem] xl:h-[36rem] bg-purple-400/20 dark:bg-purple-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
         </div>
 
+        {/* Spacer that matches the fixed header height */}
+        <div className="h-16 sm:h-20 flex-shrink-0" />
+
+        {/* Vertically centred in the remaining space */}
+        <div className="flex-1 flex items-center justify-center">
         <div className="container mx-auto px-4 xl:px-10 relative z-10">
-          <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto text-center space-y-5 xl:space-y-8 animate-fade-in">
+          <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto text-center space-y-4 sm:space-y-5 xl:space-y-8 animate-fade-in">
             <h1 className="space-y-2">
-              <span className="block text-[2.75rem] sm:text-6xl md:text-[7rem] lg:text-[10rem] xl:text-[13rem] 2xl:text-[15rem] font-black tracking-tight leading-none pb-[0.2em] bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 bg-clip-text text-transparent">
+              <span className="block text-[2.2rem] xs:text-[2.75rem] sm:text-6xl md:text-[7rem] lg:text-[10rem] xl:text-[13rem] 2xl:text-[15rem] font-black tracking-tight leading-none pb-[0.2em] bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 bg-clip-text text-transparent">
                 Big Good
               </span>
               <span className="block text-base sm:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl font-semibold text-gray-700 dark:text-gray-200 tracking-tight max-w-2xl xl:max-w-3xl mx-auto leading-snug">
@@ -60,6 +65,7 @@ export function Home() {
               </Button>
             </div>
           </div>
+        </div>
         </div>
       </section>
 

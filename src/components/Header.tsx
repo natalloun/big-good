@@ -62,7 +62,7 @@ export function Header() {
               )}>
                 <span className="text-white font-bold text-lg">BG</span>
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
+              <h1 className="hidden sm:block text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
                 Big Good
               </h1>
             </Link>
