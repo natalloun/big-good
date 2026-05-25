@@ -85,6 +85,57 @@ The documented path from \`p=none\` to \`p=reject\` follows these steps:
 4. **Move to \`p=reject\`** — with proper upstream preparation, this shift is mostly invisible to operations
 
 The Q1 report notes that only 6% of enforcing domains use the \`pct=\` tag for staged percentage rollout. Most teams jump directly from \`p=none\` to 100% enforcement. The forthcoming DMARCbis standard revision removes \`pct=\` entirely, making thorough preparation the necessary path forward.`,
+    cs: {
+      title: "Mezera v prosazování DMARC: třetina zapojených domén nikdy nedojde k cíli (Q1 2026)",
+      excerpt: "Data DMARCeye za Q1 2026 ukazují, že 36,7 % zapojených domén stále zůstává na p=none. Co to stojí a jak se bezpečně dostat k plnému prosazování.",
+      content: `Celý smysl DMARC je prosazování. Záznam říká přijímajícím poštovním serverům, co mají dělat se zprávami, které neprojdou autentizací: poslat je do spamu pomocí \`p=quarantine\`, nebo je rovnou odmítnout pomocí \`p=reject\`. Dokud doména nedosáhne jedné z těchto politik, je DMARC jen viditelnost. Užitečná, ale ne ochrana. Data za Q1 2026 z monitorovací platformy DMARCeye ukazují, že více než třetina domén zapojených do DMARC se nikdy dál nedostane.
+
+## Kde se domény zapojené do DMARC nacházejí v Q1 2026
+
+Mezi tisíci doménami, které DMARCeye aktivně monitoruje, vypadá rozdělení politik takto:
+
+- **36,7 %** na \`p=none\`: pouze monitoring. DMARC záznam existuje, ale příjemcům není řečeno, co dělat, když autentizace selže.
+- **36,8 %** na \`p=quarantine\`: zprávy, které neprojdou, jdou do spamu.
+- **26,5 %** na \`p=reject\`: plné prosazování. Zprávy, které neprojdou, jsou odmítnuty.
+
+Asi třetina monitorovaných domén je stále ve fázi viditelnosti. Plného prosazování dosáhla jen asi čtvrtina. Prostřední úroveň, quarantine, je největší jednotlivá skupina.
+
+Tento nález se týká domén, které již jsou zapojené do DMARC. Kompletní zpráva srovnává tuto skupinu s odděleným vzorkem ze skeneru veřejně dostupných internetových domén. V tomto vzorku **28 %** domén nemá žádný DMARC záznam.
+
+## Co vlastně chrání režim "pouze monitoring"
+
+DMARC záznam na \`p=none\` říká přijímajícím serverům: "pokud zpráva neprojde zarovnáním SPF a DKIM, doruč ji stejně, ale pošli zprávu o tom." Vlastník domény získává viditelnost — jak do legitimní pošty ze zapomenutých služeb, tak do pokusů o zneužití identity. Ale žádné blokování se neděje. Podvržená zpráva se dostane do schránky stejně jako legitimní.
+
+Pouze monitoring je dobrý výchozí bod. Bez monitorovacích dat nelze politiku bezpečně přitvrdit. Sedět na \`p=none\` donekonečna ale znamená, že sbíráte důkazy o zneužití identity a nikdy s tím nic neděláte.
+
+## Co vás setrvávání na p=none ve skutečnosti stojí
+
+U většiny firem se praktické riziko setrvávání na \`p=none\` projevuje na třech místech:
+
+**Spoofing se dostává do schránek.** Phishingová kampaň, která se vydává za vaši doménu, dorazí do schránek vašich zákazníků nebo zaměstnanců, protože není v platnosti žádná politika, která by ji zastavila.
+
+**Skutečná pošta se přesouvá ke spamové složce.** Přijímající servery netrestají režim pouze monitoring přímo, ale sledují zprávy s neúspěšnou autentizací proti reputaci vaší domény. Podvržená pošta na vaše jméno autentizací neprojde. Po týdnech aktivity útočníků začne tento zaznamenaný vzorec ovlivňovat, kam se vaše legitimní pošta dostane.
+
+**Požadavky pro hromadné odesílatele jsou splněny jen minimálně.** Pokyny Googlu a Yahoo z února 2024 vyžadují DMARC záznam pro odesílatele nad 5 000 zpráv denně. Publikace na \`p=none\` s reportingem splňuje minimum. Jejich filtrovací algoritmy ale stále zohledňují DMARC postoj při rozhodování o doručení.
+
+## Proč domény zůstávají na p=none
+
+- **Strach z rozbití legitimní pošty.** Přitvrzení politiky by mohlo poslat do karantény nebo odmítnout poštu od služby třetí strany, kterou tým zapomněl zdokumentovat.
+- **Žádné jasné vodítko k dalšímu kroku.** Většina monitorovacích nástrojů zobrazuje surové agregované reporty a interpretaci nechává na týmu.
+- **Zapomenutá odpovědnost.** Člověk, který DMARC monitoring nastavoval, odešel. Nikdo jiný nemá pravomoc přepnout vypínač.
+- **Podcenění přínosu.** Dokud nedojde k incidentu se spoofingem, je prosazování jednou z mnoha priorit, které si konkurují o pozornost.
+
+## Bezpečný přechod od monitoringu k prosazování
+
+Cesta z \`p=none\` na \`p=reject\` je dobře zdokumentovaná a nevyžaduje skok do neznáma:
+
+1. **Čtěte své agregované reporty alespoň 2–4 týdny.** Potřebujete stabilní obraz toho, co se odesílá pod jménem vaší domény.
+2. **Autentizujte každého legitimního odesílatele.** Váš ESP, transakční služba, marketingová platforma, fakturační systém i interní mail relay musí být zarovnané pro SPF nebo DKIM. Ideálně oba, protože DKIM přežije přeposílání a SPF ne.
+3. **Přejděte nejprve na \`p=quarantine\`.** Pošta, která neprojde, jde do spamu, ne do /dev/null. Sledujte reporty týden nebo dva.
+4. **Přejděte na \`p=reject\`.** Pokud jste krok 2 udělali správně, je tento posun většinou neviditelný.
+
+Jedno související zjištění z Q1 zprávy: pouze asi **6 %** prosazujících domén používá vestavěný tag \`pct=\` z DMARC pro postupné procentuální nasazování. Připravovaná revize standardu DMARCbis odstraňuje \`pct=\` úplně, což z "udělejte si přípravu" dělá binární cestu.`,
+    },
   },
   {
     slug: "dmarceye-goes-global-ai-native-dmarc-monitoring",
@@ -137,6 +188,49 @@ There is also a **free plan** for single domains with a monitoring cap of 5,000 
 "DMARCeye represents the same philosophy that drove the development of Topol and Lettr: a lightweight tool that solves a specific problem extremely well, without bloated complexity," says Jakub Stupka, Co-founder at Ecomail and DMARCeye. "As new market needs arise, we'll keep spinning out specialized, standalone products."
 
 DMARCeye is part of the **Big Good** ecosystem — an Ecomail-led collection of tools for marketing professionals and developers working across email communication, content, security, and design.`,
+    cs: {
+      title: "DMARCeye oznamuje globální expanzi a MCP integraci",
+      excerpt: "Globální expanze DMARCeye: MCP integrace a řízený přechod k DMARC enforcementu chrání domény a zlepšují doručitelnost ve více než 70 zemích.",
+      content: `DMARCeye vyhlašuje svou globální expanzi s dedikovaným týmem, jasnými cíli produktového vývoje a vlastním brandingem. Platforma byla vyvinuta v roce 2024 společností Ecomail a důkladně prověřena v prostředí s vysokým objemem zpráv. Nyní se vyvíjí jako samostatný produkt, který pomáhá týmům různých úrovní technické zběhlosti pochopit, kdo odesílá emaily jménem jejich domény, a nabízí konkrétní kroky k bezpečnému vynucování DMARC.
+
+## Původ a vývoj
+
+Vývojáři vytvořili DMARCeye jako odpověď na přísnější požadavky Google a Yahoo na hromadné odesílatele v roce 2024 a rostoucí zájem odesílatelů ze střední Evropy. Před globálním rozšířením byl produkt testován na tisících domén s měsíčním objemem přes 1 miliardu emailů.
+
+## Co DMARCeye umí
+
+Platforma slouží IT, bezpečnostním a marketingovým týmům, stejně jako agenturám spravujícím více domén. Nahrazuje surové XML reporty praktickou viditelností a kontextovými pokyny. Uživatelé mohou:
+
+- Identifikovat legitimní a neoprávněné odesílací zdroje
+- Odhalit chyby v konfiguraci SPF, DKIM a DMARC
+- Bezpečně přecházet z monitorování (\`p=none\`) k vynucování s pomocí AI pokynů a alertů
+- Propojit DMARC data s AI asistenty jako ChatGPT přes podporu Model Context Protocol (MCP)
+
+## Klíčová data z monitorovacího datasetu
+
+Z monitorovaného vzorku tisíců domén vyplývá:
+
+- **43,7 %** domén s DMARC zůstává pouze v režimu monitorování (\`p=none\`)
+- Pouze **19,3 %** dosáhlo plného vynucování (\`p=reject\`)
+- Jen **6,0 %** vynucujících domén využívá postupné zavádění s nastavením \`pct\` pod 100
+
+„Postupné vynucování DMARC je zásadní pro moderní bezpečnost domén. Ale většina týmů stále zůstane uvíznuta v monitoringu a nikdy nedosáhne bezpečného vynucování," říká **Jan Tlapák**, CEO Ecomail a zakladatel DMARCeye. „Proto DMARCeye přesahuje pouhé dashboardy a dává týmům personalizované další kroky."
+
+## Rozšířený produktový rozsah
+
+Platforma zahrnuje bezplatné online diagnostické nástroje:
+
+- DMARC Record Configurator
+- Kontroly DNS, SPF, DKIM a BIMI
+
+Bezplatný plán pokrývá jednu doménu s limitem 5 000 emailů měsíčně. Základní cena začíná na **4 USD za doménu měsíčně**.
+
+„DMARCeye představuje stejnou filozofii, která stojí za vývojem Topol a Lettr: lehký nástroj, který extrémně dobře řeší konkrétní problém bez zbytečné složitosti," říká **Jakub Stupka**, spoluzakladatel Ecomail a DMARCeye. „S tím, jak vznikají nové tržní potřeby, budeme nadále vyčleňovat specializované samostatné produkty."
+
+## Ekosystém Big Good
+
+DMARCeye je součástí ekosystému **Big Good** — sbírky nástrojů vedených Ecomailem pro marketingové profesionály a vývojáře pracující s emailovou komunikací, obsahem, bezpečností a designem.`,
+    },
   },
   {
     slug: "topol-launches-lettr-transactional-email-platform",
