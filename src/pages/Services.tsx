@@ -4,13 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { asset } from "@/lib/asset";
 
 // No third-party images — solid brand gradients only
 const productMeta = [
-  { color: "from-green-600 to-emerald-500", url: "https://ecomail.cz/",  logo: "/images/ecomail-logo.svg" },
-  { color: "from-gray-800 to-gray-600",     url: "https://topol.io/",    logo: "/images/topol-logo.svg" },
-  { color: "from-orange-600 to-orange-400", url: "https://dmarceye.com/",logo: "/images/dmarceye-logo.svg" },
-  { color: "from-[#EC104B] to-[#9a0030]",  url: "https://lettr.com/",   logo: "/images/lettr-logo.svg" },
+  { color: "from-green-600 to-emerald-500", url: "https://ecomail.cz/",  logo: asset("/images/ecomail-logo.svg") },
+  { color: "from-gray-800 to-gray-600",     url: "https://topol.io/",    logo: asset("/images/topol-logo.svg") },
+  { color: "from-orange-600 to-orange-400", url: "https://dmarceye.com/",logo: asset("/images/dmarceye-logo.svg") },
+  { color: "from-[#EC104B] to-[#9a0030]",  url: "https://lettr.com/",   logo: asset("/images/lettr-logo.svg") },
 ];
 
 export function Services() {

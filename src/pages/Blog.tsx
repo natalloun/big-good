@@ -14,6 +14,7 @@ import {
   type BlogCompany,
   type BlogCategory,
 } from "@/data/blog-posts";
+import { asset } from "@/lib/asset";
 
 const categoryColors: Record<BlogCategory, string> = {
   Announcement:    "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
@@ -232,7 +233,7 @@ export function Blog() {
                           <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 flex-shrink-0 overflow-hidden">
                             {post.image ? (
                               <img
-                                src={post.image}
+                                src={asset(post.image)}
                                 alt={localizedField(post, "title", language)}
                                 loading="lazy"
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

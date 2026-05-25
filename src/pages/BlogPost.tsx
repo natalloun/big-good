@@ -7,6 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { marked } from "marked";
 import { useMemo } from "react";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 
 const categoryColors: Record<string, string> = {
   Announcement:    "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
@@ -125,7 +126,7 @@ export function BlogPost() {
             {post.image && (
               <div className="mb-10 rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src={post.image}
+                  src={asset(post.image)}
                   alt={localizedField(post, "title", language)}
                   loading="eager"
                   className="w-full h-auto object-cover"

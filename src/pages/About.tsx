@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { Code, Users, Quote } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { asset } from "@/lib/asset";
 
 const audienceIcons = [Code, Users];
 
@@ -9,13 +10,13 @@ const founders = [
   {
     name: "Jakub Stupka",
     position: "Co-founder at Ecomail",
-    image: "/images/jakub-stupka.png",
+    image: asset("/images/jakub-stupka.png"),
     quote: "We don't productize ideas. We productize tools that have already proven themselves in production. Each one solves a real problem extremely well, without unnecessary complexity.",
   },
   {
     name: "Jan Tlapák",
     position: "Co-founder at Ecomail",
-    image: "/images/jan-tlapak.png",
+    image: asset("/images/jan-tlapak.png"),
     quote: "As new market needs arise, we'll keep spinning out specialized, standalone products based on our intimate knowledge of email and content infrastructure, stemming from over 10 years of experience.",
   },
 ];
@@ -93,7 +94,7 @@ export function About() {
           <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto mb-12 xl:mb-16">
             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
               <img
-                src="/images/team.png"
+                src={asset("/images/team.png")}
                 alt="Ecomail Team in Prague"
                 loading="lazy"
                 className="w-full h-auto"
