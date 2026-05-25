@@ -28,7 +28,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 dark:bg-black text-white py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-[400px_1fr] gap-8 md:gap-12 mb-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] xl:grid-cols-[360px_1fr] gap-8 md:gap-10 xl:gap-12 mb-12 items-start">
           {/* Brand */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
@@ -43,7 +43,7 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8">
             <div>
               <h4 className="font-bold mb-4 text-lg">{f.company}</h4>
               <ul className="space-y-2.5">

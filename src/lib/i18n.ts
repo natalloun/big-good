@@ -109,6 +109,7 @@ export const translations = {
       clearFilters: "Clear all filters",
       noResults: "No articles match your filters.",
       clearInline: "Clear filters",
+      filterBtn: "Filters",
       articleCount: (n: number, filtered: boolean) =>
         `${n} article${n !== 1 ? "s" : ""}${filtered ? " matching filters" : ""}`,
     },
@@ -233,6 +234,7 @@ export const translations = {
       clearFilters: "Zrušit filtry",
       noResults: "Žádné články neodpovídají filtrům.",
       clearInline: "Zrušit filtry",
+      filterBtn: "Filtry",
       articleCount: (n: number, filtered: boolean) =>
         `${n} ${n === 1 ? "článek" : n < 5 ? "články" : "článků"}${filtered ? " odpovídá filtrům" : ""}`,
     },
@@ -357,6 +359,7 @@ export const translations = {
       clearFilters: "Alle Filter entfernen",
       noResults: "Keine Artikel entsprechen Ihren Filtern.",
       clearInline: "Filter entfernen",
+      filterBtn: "Filter",
       articleCount: (n: number, filtered: boolean) =>
         `${n} Artikel${filtered ? " entsprechen den Filtern" : ""}`,
     },

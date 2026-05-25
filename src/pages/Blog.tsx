@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { useState } from "react";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, SlidersHorizontal } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -80,6 +80,7 @@ export function Blog() {
   const b = t.blog;
   const [selectedCompanies, setSelectedCompanies] = useState<Set<BlogCompany>>(new Set());
   const [selectedCategories, setSelectedCategories] = useState<Set<BlogCategory>>(new Set());
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   function toggleCompany(c: BlogCompany) {
     setSelectedCompanies((prev) => {
@@ -97,6 +98,11 @@ export function Blog() {
     });
   }
 
+  function clearFilters() {
+    setSelectedCompanies(new Set());
+    setSelectedCategories(new Set());
+  }
+
   const filtered = blogPosts.filter((post) => {
     const companyMatch =
       selectedCompanies.size === 0 ||
@@ -107,6 +113,7 @@ export function Blog() {
   });
 
   const hasFilters = selectedCompanies.size > 0 || selectedCategories.size > 0;
+  const activeFilterCount = selectedCompanies.size + selectedCategories.size;
 
   return (
     <>
@@ -116,29 +123,102 @@ export function Blog() {
         url="/blog"
       />
       {/* Hero */}
-      <section className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-32 md:pb-14 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/15 rounded-full blur-3xl animate-float" />
           <div className="absolute -bottom-20 -left-40 w-72 h-72 bg-purple-400/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-5 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
+          <div className="max-w-3xl mx-auto text-center space-y-4 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 dark:text-white tracking-tight">
               {b.heading}
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal">
+            <p className="text-sm sm:text-base md:text-lg xl:text-xl text-gray-600 dark:text-gray-300 font-normal">
               {b.description}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-12 md:py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
+
+          {/* ── Mobile filter bar (hidden on lg+) ── */}
+          <div className="lg:hidden flex items-center justify-between mb-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {b.articleCount(filtered.length, hasFilters)}
+            </p>
+            <button
+              onClick={() => setMobileFiltersOpen((v) => !v)}
+              className={cn(
+                "flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium transition-colors",
+                mobileFiltersOpen
+                  ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                  : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-blue-400"
+              )}
+            >
+              <SlidersHorizontal className="w-4 h-4" />
+              {b.filterBtn}
+              {activeFilterCount > 0 && (
+                <span className="bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {activeFilterCount}
+                </span>
+              )}
+            </button>
+          </div>
+
+          {/* ── Mobile filter panel ── */}
+          {mobileFiltersOpen && (
+            <div className="lg:hidden mb-6 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 space-y-5">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                    {b.filterProduct}
+                  </h3>
+                  <div className="space-y-2.5">
+                    {ALL_COMPANIES.map((company) => (
+                      <FilterCheckbox
+                        key={company}
+                        label={company}
+                        checked={selectedCompanies.has(company)}
+                        onChange={() => toggleCompany(company)}
+                        dot={companyDotColors[company]}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                    {b.filterType}
+                  </h3>
+                  <div className="space-y-2.5">
+                    {ALL_CATEGORIES.map((cat) => (
+                      <FilterCheckbox
+                        key={cat}
+                        label={cat}
+                        checked={selectedCategories.has(cat)}
+                        onChange={() => toggleCategory(cat)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {hasFilters && (
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                >
+                  {b.clearFilters}
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* ── Main layout: sidebar (desktop) + grid ── */}
           <div className="flex gap-10 max-w-7xl mx-auto items-start">
 
-            {/* ── Sidebar filters ── */}
-            <aside className="w-64 flex-shrink-0 sticky top-24 space-y-8">
+            {/* Desktop sidebar */}
+            <aside className="hidden lg:block w-56 xl:w-64 flex-shrink-0 sticky top-24 space-y-8">
 
               {/* Filter by product */}
               <div className="space-y-3">
@@ -180,10 +260,7 @@ export function Blog() {
               {/* Clear filters */}
               {hasFilters && (
                 <button
-                  onClick={() => {
-                    setSelectedCompanies(new Set());
-                    setSelectedCategories(new Set());
-                  }}
+                  onClick={clearFilters}
                   className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
                 >
                   {b.clearFilters}
@@ -197,10 +274,7 @@ export function Blog() {
                 <div className="text-center py-24 text-gray-500 dark:text-gray-400">
                   <p className="text-lg font-medium">{b.noResults}</p>
                   <button
-                    onClick={() => {
-                      setSelectedCompanies(new Set());
-                      setSelectedCategories(new Set());
-                    }}
+                    onClick={clearFilters}
                     className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     {b.clearInline}
@@ -208,10 +282,10 @@ export function Blog() {
                 </div>
               ) : (
                 <>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                  <p className="hidden lg:block text-sm text-gray-500 dark:text-gray-400 mb-6">
                     {b.articleCount(filtered.length, hasFilters)}
                   </p>
-                  <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                  <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
                     {filtered.map((post) => (
                       <Link key={post.slug} to={`/blog/${post.slug}`} className="group block">
                         <Card className="rounded-2xl border-gray-200 dark:border-gray-700 hover-lift overflow-hidden h-full flex flex-col">
@@ -222,7 +296,7 @@ export function Blog() {
                             </svg>
                           </div>
 
-                          <CardContent className="p-5 flex flex-col flex-1 gap-3">
+                          <CardContent className="p-4 sm:p-5 flex flex-col flex-1 gap-3">
                             {/* Badges */}
                             <div className="flex flex-wrap gap-2">
                               <span className={cn("px-2.5 py-0.5 rounded-full text-xs font-semibold", categoryColors[post.category])}>
@@ -236,12 +310,12 @@ export function Blog() {
                             </div>
 
                             {/* Title */}
-                            <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                            <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                               {localizedField(post, "title", language)}
                             </h3>
 
                             {/* Excerpt */}
-                            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+                            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
                               {localizedField(post, "excerpt", language)}
                             </p>
 

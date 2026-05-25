@@ -24,23 +24,23 @@ export function Services() {
         url="/services"
       />
       {/* Hero */}
-      <section className="relative pt-32 pb-20 xl:pt-40 xl:pb-28 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative pt-28 pb-14 md:pt-32 md:pb-16 xl:pt-40 xl:pb-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 xl:w-[28rem] xl:h-[28rem] bg-blue-400/15 rounded-full blur-3xl animate-float" />
           <div className="absolute -bottom-20 -left-40 w-72 h-72 xl:w-[26rem] xl:h-[26rem] bg-purple-400/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
         </div>
         <div className="container mx-auto px-4 xl:px-10 relative z-10">
-          <div className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-gray-900 dark:text-white tracking-tight">{s.heroHeading}</h1>
-            <p className="text-xl md:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-normal max-w-3xl xl:max-w-4xl mx-auto">{s.heroDesc}</p>
+          <div className="max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto text-center space-y-5 xl:space-y-6 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-gray-900 dark:text-white tracking-tight">{s.heroHeading}</h1>
+            <p className="text-sm sm:text-base md:text-lg xl:text-xl 2xl:text-2xl text-gray-600 dark:text-gray-300 font-normal max-w-2xl xl:max-w-3xl mx-auto">{s.heroDesc}</p>
           </div>
         </div>
       </section>
 
       {/* Products grid */}
-      <section className="py-24 xl:py-32 2xl:py-40 bg-white dark:bg-gray-900">
+      <section className="py-14 md:py-20 xl:py-28 2xl:py-36 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4 xl:px-10">
-          <div className="grid md:grid-cols-2 gap-8 xl:gap-10 max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 xl:gap-10 max-w-3xl md:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto">
             {s.products.map((product, i) => {
               const meta = productMeta[i];
               return (
@@ -49,25 +49,25 @@ export function Services() {
                   className="group hover-lift hover-scale rounded-3xl border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer"
                   onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
                 >
-                  <div className="relative h-44 xl:h-56 2xl:h-64 overflow-hidden">
+                  <div className="relative h-36 sm:h-40 md:h-44 xl:h-52 2xl:h-60 overflow-hidden">
                     <img src={meta.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
                     <div className={`absolute inset-0 bg-gradient-to-br ${meta.color}`} />
                     <div className="relative z-10 h-full flex items-center justify-center">
-                      <div className="bg-white/95 rounded-xl px-6 xl:px-8 py-3 xl:py-4">
-                        <img src={meta.logo} alt={product.name} className="h-8 xl:h-10 2xl:h-12 w-auto object-contain max-w-[180px] xl:max-w-[220px]" />
+                      <div className="bg-white/95 rounded-xl px-5 xl:px-8 py-2.5 xl:py-4">
+                        <img src={meta.logo} alt={product.name} className="h-7 sm:h-8 xl:h-10 2xl:h-12 w-auto object-contain max-w-[150px] xl:max-w-[200px]" />
                       </div>
                     </div>
-                    <span className="absolute top-4 right-4 z-10 text-xs xl:text-sm font-semibold text-white/90 bg-white/15 px-3 py-1 rounded-full">
+                    <span className="absolute top-3 right-3 z-10 text-xs font-semibold text-white/90 bg-white/15 px-3 py-1 rounded-full">
                       {product.category}
                     </span>
                   </div>
-                  <CardHeader className="pb-2 xl:pb-3">
-                    <CardTitle className="text-2xl xl:text-3xl font-bold">{product.name}</CardTitle>
-                    <CardDescription className="text-base xl:text-lg font-medium">{product.tagline}</CardDescription>
+                  <CardHeader className="pb-1 xl:pb-2 pt-4 xl:pt-5 px-5 xl:px-6">
+                    <CardTitle className="text-xl sm:text-2xl xl:text-3xl font-bold">{product.name}</CardTitle>
+                    <CardDescription className="text-sm sm:text-base xl:text-lg font-medium">{product.tagline}</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-4 xl:space-y-5">
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed xl:text-lg">{product.description}</p>
-                    <Button variant="ghost" className="w-full justify-center font-semibold xl:text-base group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <CardContent className="space-y-3 xl:space-y-5 px-5 pb-5 xl:px-6 xl:pb-6">
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">{product.description}</p>
+                    <Button variant="ghost" className="w-full justify-center text-sm sm:text-base font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       {s.visitWebsite}
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
@@ -78,9 +78,9 @@ export function Services() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-20 xl:mt-28 space-y-4">
-            <p className="text-xl xl:text-2xl text-gray-600 dark:text-gray-400 font-medium">{s.bottomCta}</p>
-            <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-10 xl:px-12 py-7 xl:py-8 text-lg xl:text-xl font-semibold hover-lift" asChild>
+          <div className="text-center mt-14 xl:mt-20 space-y-4">
+            <p className="text-base xl:text-xl text-gray-600 dark:text-gray-400 font-medium">{s.bottomCta}</p>
+            <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-8 xl:px-12 py-6 xl:py-8 text-base xl:text-xl font-semibold hover-lift" asChild>
               <Link to="/contact">
                 {s.exploreCta}
                 <ArrowRight className="ml-2 h-5 w-5" />

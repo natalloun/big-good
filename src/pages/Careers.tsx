@@ -69,8 +69,8 @@ export function Careers() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">{c.heading}</h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto font-normal">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 dark:text-white tracking-tight">{c.heading}</h1>
+            <p className="text-sm sm:text-base md:text-lg xl:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto font-normal">
               {c.description}
             </p>
           </div>
