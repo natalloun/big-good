@@ -15,7 +15,6 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { useLanguage } from "./contexts/LanguageContext";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { CookieBanner } from "./components/CookieBanner";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Services } from "./pages/Services";
@@ -26,7 +25,6 @@ import { Careers } from "./pages/Careers";
 import { Contact } from "./pages/Contact";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { TermsOfService } from "./pages/TermsOfService";
-import { CookiePolicy } from "./pages/CookiePolicy";
 import type { Language } from "./lib/i18n";
 import { SITE_URL } from "./components/SEO";
 
@@ -75,7 +73,6 @@ function LangLayout() {
         <Outlet />
       </main>
       <Footer />
-      <CookieBanner />
     </div>
   );
 }
@@ -133,7 +130,6 @@ export default function App() {
               <Route path="contact" element={<Contact />} />
               <Route path="privacy-policy" element={<PrivacyPolicy />} />
               <Route path="terms-of-service" element={<TermsOfService />} />
-              <Route path="cookie-policy" element={<CookiePolicy />} />
             </Route>
 
             {/* Fallback for any unknown path */}
