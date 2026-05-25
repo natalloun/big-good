@@ -8,6 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import {
   blogPosts,
   formatDate,
+  localizedField,
   ALL_COMPANIES,
   ALL_CATEGORIES,
   type BlogCompany,
@@ -15,14 +16,23 @@ import {
 } from "@/data/blog-posts";
 
 const categoryColors: Record<BlogCategory, string> = {
-  Announcement:   "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  Analysis:       "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
-  "Product Update": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-  "Case Study":   "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
-  Engineering:    "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+  Announcement:    "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  Analysis:        "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
+  "Product Update":"bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  "Case Study":    "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  Engineering:     "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
 };
 
-const companyColors: Record<BlogCompany, string> = {
+// Full-color company badge (background + text)
+const companyBadgeColors: Record<BlogCompany, string> = {
+  Ecomail:  "bg-green-500 text-white",
+  Topol:    "bg-gray-700 text-white",
+  DMARCeye: "bg-orange-500 text-white",
+  Lettr:    "bg-purple-700 text-white",
+};
+
+// Dot color for sidebar filter checkboxes
+const companyDotColors: Record<BlogCompany, string> = {
   Ecomail:  "bg-green-500",
   Topol:    "bg-gray-700",
   DMARCeye: "bg-orange-500",
@@ -66,7 +76,7 @@ function FilterCheckbox({
 }
 
 export function Blog() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const b = t.blog;
   const [selectedCompanies, setSelectedCompanies] = useState<Set<BlogCompany>>(new Set());
   const [selectedCategories, setSelectedCategories] = useState<Set<BlogCategory>>(new Set());
@@ -142,7 +152,7 @@ export function Blog() {
                       label={company}
                       checked={selectedCompanies.has(company)}
                       onChange={() => toggleCompany(company)}
-                      dot={companyColors[company]}
+                      dot={companyDotColors[company]}
                     />
                   ))}
                 </div>
@@ -219,8 +229,7 @@ export function Blog() {
                                 {post.category}
                               </span>
                               {post.company && (
-                                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex items-center gap-1.5">
-                                  <span className={cn("w-1.5 h-1.5 rounded-full", companyColors[post.company])} />
+                                <span className={cn("px-2.5 py-0.5 rounded-full text-xs font-semibold", companyBadgeColors[post.company])}>
                                   {post.company}
                                 </span>
                               )}
@@ -228,12 +237,12 @@ export function Blog() {
 
                             {/* Title */}
                             <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
-                              {post.title}
+                              {localizedField(post, "title", language)}
                             </h3>
 
                             {/* Excerpt */}
                             <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
-                              {post.excerpt}
+                              {localizedField(post, "excerpt", language)}
                             </p>
 
                             {/* Footer */}

@@ -2,26 +2,37 @@ import { useParams, Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ArrowLeft, Calendar, Tag, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getPostBySlug, formatDate } from "@/data/blog-posts";
+import { getPostBySlug, formatDate, localizedField, type BlogCompany } from "@/data/blog-posts";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { marked } from "marked";
 import { useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 const categoryColors: Record<string, string> = {
-  "Announcement": "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  "Analysis": "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
-  "Product Update": "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-  "Case Study": "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
-  "Engineering": "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+  Announcement:    "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  Analysis:        "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
+  "Product Update":"bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  "Case Study":    "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  Engineering:     "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+};
+
+const companyBadgeColors: Record<BlogCompany, string> = {
+  Ecomail:  "bg-green-500 text-white",
+  Topol:    "bg-gray-700 text-white",
+  DMARCeye: "bg-orange-500 text-white",
+  Lettr:    "bg-purple-700 text-white",
 };
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
+  const { language } = useLanguage();
   const post = slug ? getPostBySlug(slug) : undefined;
 
   const htmlContent = useMemo(() => {
     if (!post) return "";
-    return marked(post.content) as string;
-  }, [post]);
+    const raw = localizedField(post, "content", language);
+    return marked(raw) as string;
+  }, [post, language]);
 
   if (!post) {
     return (
@@ -42,13 +53,14 @@ export function BlogPost() {
   return (
     <>
       <SEO
-        title={`${post.title} | Big Good Blog`}
-        description={post.excerpt}
+        title={`${localizedField(post, "title", language)} | Big Good Blog`}
+        description={localizedField(post, "excerpt", language)}
         url={`/blog/${post.slug}`}
         type="article"
         author={post.author}
         publishedTime={post.date}
       />
+
       {/* Header */}
       <section className="relative pt-32 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -64,13 +76,18 @@ export function BlogPost() {
             </Button>
 
             <div className="flex items-center gap-3 flex-wrap">
-              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${categoryColors[post.category] ?? ""}`}>
+              <span className={cn("px-3 py-1 rounded-full text-xs font-semibold", categoryColors[post.category] ?? "")}>
                 <Tag className="w-3 h-3 inline mr-1" />
                 {post.category}
               </span>
+              {post.company && (
+                <span className={cn("px-3 py-1 rounded-full text-xs font-semibold", companyBadgeColors[post.company])}>
+                  {post.company}
+                </span>
+              )}
               <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5" />
-                {formatDate(post.date)}
+                {formatDate(post.date, language)}
               </span>
               <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
                 <User className="w-3.5 h-3.5" />
@@ -79,10 +96,10 @@ export function BlogPost() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight">
-              {post.title}
+              {localizedField(post, "title", language)}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-              {post.excerpt}
+              {localizedField(post, "excerpt", language)}
             </p>
           </div>
         </div>

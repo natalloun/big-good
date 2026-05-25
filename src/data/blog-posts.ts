@@ -1,6 +1,15 @@
 export type BlogCategory = "Announcement" | "Analysis" | "Product Update" | "Case Study" | "Engineering";
 export type BlogCompany = "Ecomail" | "Topol" | "DMARCeye" | "Lettr";
 
+// Optional per-language overrides.
+// If a translation is provided, it replaces the default (English) field.
+// If omitted, the English version is shown regardless of the selected language.
+export type BlogPostTranslation = {
+  title?: string;
+  excerpt?: string;
+  content?: string;
+};
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -10,6 +19,10 @@ export type BlogPost = {
   excerpt: string;
   author: string;
   content: string;
+  // Add translated versions here when available.
+  // Example: cs: { title: "...", excerpt: "...", content: "..." }
+  cs?: BlogPostTranslation;
+  de?: BlogPostTranslation;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -368,8 +381,19 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
 }
 
-export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("en-US", {
+// Returns locale-aware field — falls back to English if translation is missing.
+export function localizedField(
+  post: BlogPost,
+  field: keyof BlogPostTranslation,
+  lang: string
+): string {
+  const t = lang === "cs" ? post.cs : lang === "de" ? post.de : undefined;
+  return (t?.[field] as string | undefined) ?? (post[field as keyof BlogPost] as string);
+}
+
+export function formatDate(dateStr: string, lang = "en"): string {
+  const locale = lang === "cs" ? "cs-CZ" : lang === "de" ? "de-DE" : "en-US";
+  return new Date(dateStr).toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
     day: "numeric",
