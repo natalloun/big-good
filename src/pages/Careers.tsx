@@ -158,7 +158,7 @@ export function Careers() {
               <Button
                 variant="outline"
                 className="rounded-xl mt-2"
-                onClick={() => window.open("https://ecomail.cz/kariera/", "_blank", "noopener,noreferrer")}
+                onClick={() => window.open("https://ecomail.cz/prihlasit/", "_blank", "noopener,noreferrer")}
               >
                 {c.spontaneousCta}
                 <ArrowRight className="ml-2 h-4 w-4" />
