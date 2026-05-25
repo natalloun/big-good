@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // GitHub Pages SPA: restore redirected path
+      (function() {
+        var redirect = sessionStorage.getItem('ghpages-redirect');
+        if (redirect) {
+          sessionStorage.removeItem('ghpages-redirect');
+          var base = '/big-good';
+          var path = redirect.startsWith(base) ? redirect.slice(base.length) : redirect;
+          if (path && path !== '/') window.history.replaceState(null, '', base + path);
+        }
+      })();
+    </script>
     <title>Big Good | Email Marketing Ecosystem</title>
     <meta name="description" content="Big Good is the parent ecosystem of powerful email tools — Ecomail, Topol, DMARCeye, and Lettr. Built by ECOMAIL.CZ, s.r.o." />
     <meta name="robots" content="index, follow" />
