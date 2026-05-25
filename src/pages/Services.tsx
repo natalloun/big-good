@@ -1,17 +1,56 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { SEO } from "@/components/SEO";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { asset } from "@/lib/asset";
+import { cn } from "@/lib/utils";
 
-// No third-party images — solid brand gradients only
 const productMeta = [
-  { color: "from-green-600 to-emerald-500", url: "https://ecomail.cz/",  logo: asset("/images/ecomail-logo.svg") },
-  { color: "from-gray-800 to-gray-600",     url: "https://topol.io/",    logo: asset("/images/topol-logo.svg") },
-  { color: "from-orange-600 to-orange-400", url: "https://dmarceye.com/",logo: asset("/images/dmarceye-logo.svg") },
-  { color: "from-[#EC104B] to-[#9a0030]",  url: "https://lettr.com/",   logo: asset("/images/lettr-logo.svg") },
+  {
+    color: "from-green-600 to-emerald-500",
+    url: "https://ecomail.cz/",
+    logo: asset("/images/ecomail-logo.svg"),
+    features: [
+      "Lorem ipsum dolor sit amet consectetur",
+      "Adipiscing elit sed do eiusmod tempor",
+      "Ut labore et dolore magna aliqua enim",
+      "Quis nostrud exercitation ullamco laboris",
+    ],
+  },
+  {
+    color: "from-gray-800 to-gray-600",
+    url: "https://topol.io/",
+    logo: asset("/images/topol-logo.svg"),
+    features: [
+      "Lorem ipsum dolor sit amet consectetur",
+      "Adipiscing elit sed do eiusmod tempor",
+      "Ut labore et dolore magna aliqua enim",
+      "Quis nostrud exercitation ullamco laboris",
+    ],
+  },
+  {
+    color: "from-orange-600 to-orange-400",
+    url: "https://dmarceye.com/",
+    logo: asset("/images/dmarceye-logo.svg"),
+    features: [
+      "Lorem ipsum dolor sit amet consectetur",
+      "Adipiscing elit sed do eiusmod tempor",
+      "Ut labore et dolore magna aliqua enim",
+      "Quis nostrud exercitation ullamco laboris",
+    ],
+  },
+  {
+    color: "from-[#EC104B] to-[#9a0030]",
+    url: "https://lettr.com/",
+    logo: asset("/images/lettr-logo.svg"),
+    features: [
+      "Lorem ipsum dolor sit amet consectetur",
+      "Adipiscing elit sed do eiusmod tempor",
+      "Ut labore et dolore magna aliqua enim",
+      "Quis nostrud exercitation ullamco laboris",
+    ],
+  },
 ];
 
 export function Services() {
@@ -27,6 +66,7 @@ export function Services() {
         url="/services"
         lang={language}
       />
+
       {/* Hero */}
       <section className="relative pt-28 pb-14 md:pt-32 md:pb-16 xl:pt-40 xl:pb-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -41,44 +81,85 @@ export function Services() {
         </div>
       </section>
 
-      {/* Products grid */}
-      <section className="py-14 md:py-20 xl:py-28 2xl:py-36 bg-white dark:bg-gray-900">
+      {/* Zigzag products */}
+      <section className="py-14 md:py-20 xl:py-28 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4 xl:px-10">
-          <div className="grid md:grid-cols-2 gap-6 xl:gap-10 max-w-3xl md:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto">
+          <div className="max-w-5xl xl:max-w-6xl mx-auto space-y-20 md:space-y-28 xl:space-y-36">
             {s.products.map((product, i) => {
               const meta = productMeta[i];
+              const isEven = i % 2 === 0;
+
               return (
-                <Card
+                <div
                   key={product.name}
-                  className="group hover-lift hover-scale rounded-3xl border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer"
-                  onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
+                  className={cn(
+                    "flex flex-col md:flex-row items-center gap-10 xl:gap-16",
+                    !isEven && "md:flex-row-reverse"
+                  )}
                 >
-                  <div className={`relative h-36 sm:h-40 md:h-44 xl:h-52 bg-gradient-to-br ${meta.color} flex items-center justify-center`}>
-                    <div className="bg-white/95 rounded-xl px-5 xl:px-8 py-2.5 xl:py-4">
-                      <img src={meta.logo} alt={product.name} loading="lazy" className="h-7 sm:h-8 xl:h-10 2xl:h-12 w-auto object-contain max-w-[150px] xl:max-w-[200px]" />
+                  {/* Logo / visual block */}
+                  <div className="w-full md:w-1/2 flex-shrink-0">
+                    <div
+                      className={cn(
+                        "rounded-3xl bg-gradient-to-br p-10 xl:p-14 flex items-center justify-center aspect-[4/3] shadow-xl cursor-pointer group transition-transform duration-300 hover:scale-[1.02]",
+                        meta.color
+                      )}
+                      onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
+                    >
+                      <div className="bg-white rounded-2xl px-8 xl:px-12 py-5 xl:py-7 shadow-lg">
+                        <img
+                          src={meta.logo}
+                          alt={product.name}
+                          loading="lazy"
+                          className="h-10 sm:h-12 xl:h-14 w-auto object-contain max-w-[200px] xl:max-w-[240px]"
+                        />
+                      </div>
                     </div>
-                    <span className="absolute top-3 right-3 text-xs font-semibold text-white/90 bg-white/20 px-3 py-1 rounded-full">
-                      {product.category}
-                    </span>
                   </div>
-                  <CardHeader className="pb-1 xl:pb-2 pt-4 xl:pt-5 px-5 xl:px-6">
-                    <CardTitle className="text-xl sm:text-2xl xl:text-3xl font-bold">{product.name}</CardTitle>
-                    <CardDescription className="text-sm sm:text-base xl:text-lg font-medium">{product.tagline}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3 xl:space-y-5 px-5 pb-5 xl:px-6 xl:pb-6">
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">{product.description}</p>
-                    <Button variant="ghost" className="w-full justify-center text-sm sm:text-base font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400">
+
+                  {/* Text block */}
+                  <div className="w-full md:w-1/2 space-y-5 xl:space-y-7">
+                    <div className="space-y-1">
+                      <span className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+                        {product.category}
+                      </span>
+                      <h2 className="text-3xl sm:text-4xl xl:text-5xl font-black text-gray-900 dark:text-white tracking-tight">
+                        {product.name}
+                      </h2>
+                      <p className="text-base xl:text-lg text-gray-500 dark:text-gray-400 font-medium">
+                        {product.tagline}
+                      </p>
+                    </div>
+
+                    <p className="text-sm sm:text-base xl:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {product.description}
+                    </p>
+
+                    {/* Feature list */}
+                    <ul className="space-y-2.5">
+                      {meta.features.map((feat) => (
+                        <li key={feat} className="flex items-start gap-3 text-sm xl:text-base text-gray-600 dark:text-gray-300">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      className="rounded-xl font-semibold"
+                      onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
+                    >
                       {s.visitWebsite}
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               );
             })}
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-14 xl:mt-20 space-y-4">
+          <div className="text-center mt-20 xl:mt-28 space-y-4">
             <p className="text-base xl:text-xl text-gray-600 dark:text-gray-400 font-medium">{s.bottomCta}</p>
             <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-8 xl:px-12 py-6 xl:py-8 text-base xl:text-xl font-semibold hover-lift" asChild>
               <Link to={p("/contact")}>{s.exploreCta}<ArrowRight className="ml-2 h-5 w-5" /></Link>

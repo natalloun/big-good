@@ -28,7 +28,7 @@ const companyBadgeColors: Record<BlogCompany, string> = {
   Ecomail:  "bg-green-500 text-white",
   Topol:    "bg-gray-700 text-white",
   DMARCeye: "bg-orange-500 text-white",
-  Lettr:    "bg-purple-700 text-white",
+  Lettr:    "bg-[#EC104B] text-white",
 };
 
 const companyDotColors: Record<BlogCompany, string> = {
