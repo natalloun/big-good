@@ -11,17 +11,26 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const p = (path: string) => `/${language}${path}`;
 
   const navItems = [
-    { label: t.nav.home, href: "/" },
-    { label: t.nav.about, href: "/about" },
-    { label: t.nav.tools, href: "/services" },
-    { label: t.nav.blog, href: "/blog" },
-    { label: t.nav.newsroom, href: "/news" },
-    { label: t.nav.careers, href: "/careers" },
-    { label: t.nav.contact, href: "/contact" },
+    { label: t.nav.home,     href: p("") },
+    { label: t.nav.about,    href: p("/about") },
+    { label: t.nav.tools,    href: p("/services") },
+    { label: t.nav.blog,     href: p("/blog") },
+    { label: t.nav.newsroom, href: p("/news") },
+    { label: t.nav.careers,  href: p("/careers") },
+    { label: t.nav.contact,  href: p("/contact") },
   ];
+
+  const isActive = (href: string) => {
+    // Home: exact match
+    if (href === p("")) return location.pathname === p("") || location.pathname === p("/");
+    // Others: exact or child path
+    return location.pathname === href || location.pathname.startsWith(href + "/");
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 80);
@@ -46,7 +55,7 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className={cn("flex items-center justify-between transition-all duration-300", isScrolled ? "py-4" : "py-5")}>
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 animate-slide-in-left">
+            <Link to={p("")} className="flex items-center gap-3 animate-slide-in-left">
               <div className={cn(
                 "w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center transition-all duration-300",
                 isScrolled ? "shadow-md" : "shadow-lg"
@@ -66,7 +75,7 @@ export function Header() {
                   to={item.href}
                   className={cn(
                     "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-sm",
-                    location.pathname === item.href && "text-blue-600 dark:text-blue-400"
+                    isActive(item.href) && "text-blue-600 dark:text-blue-400"
                   )}
                 >
                   {item.label}
@@ -103,7 +112,7 @@ export function Header() {
                   to={item.href}
                   className={cn(
                     "block py-3 px-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors font-medium",
-                    location.pathname === item.href && "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-800"
+                    isActive(item.href) && "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-800"
                   )}
                 >
                   {item.label}

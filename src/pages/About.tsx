@@ -23,7 +23,7 @@ const founders = [
 const audienceColors = ["from-blue-500 to-purple-600", "from-green-500 to-emerald-600"];
 
 export function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const a = t.about;
 
   return (
@@ -32,6 +32,7 @@ export function About() {
         title="O nás | Big Good"
         description="Poznejte tým za Big Good — česká společnost budující e-mailové nástroje, které používají tisíce firem. ECOMAIL.CZ, s.r.o."
         url="/about"
+        lang={language}
       />
       {/* Hero */}
       <section className="relative pt-28 pb-14 md:pt-32 md:pb-16 xl:pt-40 xl:pb-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
@@ -88,10 +89,15 @@ export function About() {
             </p>
           </div>
 
-          {/* Team photo */}
+          {/* Team photo — lazy loaded */}
           <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto mb-12 xl:mb-16">
             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-              <img src="/images/team.png" alt="Ecomail Team in Prague" className="w-full h-auto" />
+              <img
+                src="/images/team.png"
+                alt="Ecomail Team in Prague"
+                loading="lazy"
+                className="w-full h-auto"
+              />
             </div>
           </div>
 
@@ -105,7 +111,12 @@ export function About() {
                   <div className="flex items-center gap-4 xl:gap-6">
                     <div className="relative flex-shrink-0">
                       <div className="w-16 h-16 sm:w-20 sm:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden ring-4 ring-blue-100 dark:ring-blue-900">
-                        <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
+                        <img
+                          src={founder.image}
+                          alt={founder.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 border-2 border-white dark:border-gray-800" />
                     </div>

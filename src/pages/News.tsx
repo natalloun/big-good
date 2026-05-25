@@ -4,7 +4,7 @@ import { newsItems } from "@/data/news-items";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export function News() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const n = t.news;
 
   return (
@@ -13,6 +13,7 @@ export function News() {
         title="Press | Big Good"
         description="See who's writing about Big Good, Ecomail, Topol, DMARCeye, and Lettr. Media coverage, articles, and press mentions."
         url="/news"
+        lang={language}
       />
       {/* Hero */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
@@ -22,8 +23,8 @@ export function News() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tight">{n.heading}</h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-normal max-w-2xl mx-auto">{n.description}</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 dark:text-white tracking-tight">{n.heading}</h1>
+            <p className="text-sm sm:text-base md:text-lg xl:text-xl text-gray-600 dark:text-gray-300 font-normal max-w-2xl mx-auto">{n.description}</p>
           </div>
         </div>
       </section>

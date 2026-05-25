@@ -5,16 +5,18 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// No third-party images — solid brand gradients only
 const productMeta = [
-  { color: "from-green-600/65 to-emerald-500/65", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80", url: "https://ecomail.cz/", logo: "/images/ecomail-logo.svg" },
-  { color: "from-gray-900/65 to-gray-700/65", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", url: "https://topol.io/", logo: "/images/topol-logo.svg" },
-  { color: "from-orange-600/65 to-orange-400/65", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", url: "https://dmarceye.com/", logo: "/images/dmarceye-logo.svg" },
-  { color: "from-[#EC104B]/65 to-[#9a0030]/65", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", url: "https://lettr.com/", logo: "/images/lettr-logo.svg" },
+  { color: "from-green-600 to-emerald-500", url: "https://ecomail.cz/",  logo: "/images/ecomail-logo.svg" },
+  { color: "from-gray-800 to-gray-600",     url: "https://topol.io/",    logo: "/images/topol-logo.svg" },
+  { color: "from-orange-600 to-orange-400", url: "https://dmarceye.com/",logo: "/images/dmarceye-logo.svg" },
+  { color: "from-[#EC104B] to-[#9a0030]",  url: "https://lettr.com/",   logo: "/images/lettr-logo.svg" },
 ];
 
 export function Services() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const s = t.services;
+  const p = (path: string) => `/${language}${path}`;
 
   return (
     <>
@@ -22,6 +24,7 @@ export function Services() {
         title="Produkty a služby | Big Good"
         description="Objevte nástroje Big Good: Ecomail pro e-mailový marketing, Topol pro design šablon, DMARCeye pro monitorování DMARC a Lettr pro odesílání e-mailů."
         url="/services"
+        lang={language}
       />
       {/* Hero */}
       <section className="relative pt-28 pb-14 md:pt-32 md:pb-16 xl:pt-40 xl:pb-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
@@ -49,15 +52,11 @@ export function Services() {
                   className="group hover-lift hover-scale rounded-3xl border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer"
                   onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
                 >
-                  <div className="relative h-36 sm:h-40 md:h-44 xl:h-52 2xl:h-60 overflow-hidden">
-                    <img src={meta.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${meta.color}`} />
-                    <div className="relative z-10 h-full flex items-center justify-center">
-                      <div className="bg-white/95 rounded-xl px-5 xl:px-8 py-2.5 xl:py-4">
-                        <img src={meta.logo} alt={product.name} className="h-7 sm:h-8 xl:h-10 2xl:h-12 w-auto object-contain max-w-[150px] xl:max-w-[200px]" />
-                      </div>
+                  <div className={`relative h-36 sm:h-40 md:h-44 xl:h-52 bg-gradient-to-br ${meta.color} flex items-center justify-center`}>
+                    <div className="bg-white/95 rounded-xl px-5 xl:px-8 py-2.5 xl:py-4">
+                      <img src={meta.logo} alt={product.name} loading="lazy" className="h-7 sm:h-8 xl:h-10 2xl:h-12 w-auto object-contain max-w-[150px] xl:max-w-[200px]" />
                     </div>
-                    <span className="absolute top-3 right-3 z-10 text-xs font-semibold text-white/90 bg-white/15 px-3 py-1 rounded-full">
+                    <span className="absolute top-3 right-3 text-xs font-semibold text-white/90 bg-white/20 px-3 py-1 rounded-full">
                       {product.category}
                     </span>
                   </div>
@@ -81,10 +80,7 @@ export function Services() {
           <div className="text-center mt-14 xl:mt-20 space-y-4">
             <p className="text-base xl:text-xl text-gray-600 dark:text-gray-400 font-medium">{s.bottomCta}</p>
             <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-8 xl:px-12 py-6 xl:py-8 text-base xl:text-xl font-semibold hover-lift" asChild>
-              <Link to="/contact">
-                {s.exploreCta}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              <Link to={p("/contact")}>{s.exploreCta}<ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
         </div>

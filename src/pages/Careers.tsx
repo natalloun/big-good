@@ -51,7 +51,7 @@ const levelColors: Record<string, string> = {
 };
 
 export function Careers() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const c = t.careers;
 
   return (
@@ -60,6 +60,7 @@ export function Careers() {
         title="Kariéra | Big Good"
         description="Připojte se k týmu Big Good. Prozkoumejte otevřené pozice v Ecomail, Topol, DMARCeye a Lettr."
         url="/careers"
+        lang={language}
       />
       {/* Hero */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">

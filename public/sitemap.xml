@@ -1,107 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- Home -->
   <url>
-    <loc>https://biggood.netlify.app/</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://big-good.vercel.app/en</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://big-good.vercel.app/de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- About -->
   <url>
-    <loc>https://biggood.netlify.app/about</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://big-good.vercel.app/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/about" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/about" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://big-good.vercel.app/de/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/about" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Services / Products -->
   <url>
-    <loc>https://biggood.netlify.app/services</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://big-good.vercel.app/en/services</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/services" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/services" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://big-good.vercel.app/de/services" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/services" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog -->
   <url>
-    <loc>https://biggood.netlify.app/blog</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://big-good.vercel.app/en/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/blog" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/blog" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://big-good.vercel.app/de/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/blog" />
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog posts (EN canonical; CS/DE alternate where translation exists) -->
   <url>
-    <loc>https://biggood.netlify.app/blog/placeholder-announcement-1</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://biggood.netlify.app/blog/placeholder-analysis-1</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://biggood.netlify.app/blog/placeholder-product-update-1</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://biggood.netlify.app/blog/placeholder-case-study-1</loc>
-    <lastmod>2026-03-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://biggood.netlify.app/blog/placeholder-engineering-1</loc>
-    <lastmod>2026-03-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://biggood.netlify.app/news</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://biggood.netlify.app/careers</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://biggood.netlify.app/contact</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://big-good.vercel.app/en/blog/dmarc-enforcement-gap-q1-2026</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/blog/dmarc-enforcement-gap-q1-2026" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/blog/dmarc-enforcement-gap-q1-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/blog/dmarc-enforcement-gap-q1-2026" />
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://biggood.netlify.app/privacy-policy</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://big-good.vercel.app/en/blog/dmarceye-goes-global-ai-native-dmarc-monitoring</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/blog/dmarceye-goes-global-ai-native-dmarc-monitoring" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/blog/dmarceye-goes-global-ai-native-dmarc-monitoring" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/blog/dmarceye-goes-global-ai-native-dmarc-monitoring" />
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://biggood.netlify.app/terms-of-service</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://big-good.vercel.app/en/blog/topol-launches-lettr-transactional-email-platform</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/blog/topol-launches-lettr-transactional-email-platform" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/blog/topol-launches-lettr-transactional-email-platform" />
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://biggood.netlify.app/cookie-policy</loc>
-    <lastmod>2026-05-21</lastmod>
+    <loc>https://big-good.vercel.app/en/blog/dmarceye-new-free-tools</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/blog/dmarceye-new-free-tools" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/blog/dmarceye-new-free-tools" />
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://big-good.vercel.app/en/blog/ecomail-2025-growth-milestones</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/blog/ecomail-2025-growth-milestones" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/blog/ecomail-2025-growth-milestones" />
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://big-good.vercel.app/en/blog/topol-spins-out-from-ecomail-standalone-email-editor</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/blog/topol-spins-out-from-ecomail-standalone-email-editor" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/blog/topol-spins-out-from-ecomail-standalone-email-editor" />
+    <lastmod>2025-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Press / Newsroom -->
+  <url>
+    <loc>https://big-good.vercel.app/en/news</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/news" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/news" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://big-good.vercel.app/de/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/news" />
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Careers -->
+  <url>
+    <loc>https://big-good.vercel.app/en/careers</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/careers" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/careers" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://big-good.vercel.app/de/careers" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/careers" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://big-good.vercel.app/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://big-good.vercel.app/en/contact" />
+    <xhtml:link rel="alternate" hreflang="cs"        href="https://big-good.vercel.app/cs/contact" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://big-good.vercel.app/de/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://big-good.vercel.app/en/contact" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://big-good.vercel.app/en/privacy-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://big-good.vercel.app/en/terms-of-service</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://big-good.vercel.app/en/cookie-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

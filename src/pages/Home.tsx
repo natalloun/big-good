@@ -7,19 +7,21 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const perkIcons = [Globe, Clock, TrendingUp, Heart];
 
+// No third-party images — just brand colours + logos
 const toolMeta = [
-  { color: "from-green-600/65 to-emerald-500/65", url: "https://ecomail.cz/", image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80", logo: "/images/ecomail-logo.svg" },
-  { color: "from-gray-900/65 to-gray-700/65", url: "https://topol.io/", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", logo: "/images/topol-logo.svg" },
-  { color: "from-orange-600/65 to-orange-400/65", url: "https://dmarceye.com/", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", logo: "/images/dmarceye-logo.svg" },
-  { color: "from-[#EC104B]/65 to-[#9a0030]/65", url: "https://lettr.com/", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", logo: "/images/lettr-logo.svg" },
+  { color: "from-green-600 to-emerald-500", url: "https://ecomail.cz/",  logo: "/images/ecomail-logo.svg" },
+  { color: "from-gray-800 to-gray-600",     url: "https://topol.io/",    logo: "/images/topol-logo.svg" },
+  { color: "from-orange-600 to-orange-400", url: "https://dmarceye.com/",logo: "/images/dmarceye-logo.svg" },
+  { color: "from-[#EC104B] to-[#9a0030]",  url: "https://lettr.com/",   logo: "/images/lettr-logo.svg" },
 ];
 
 const statKeys = ["tools", "users", "countries"] as const;
 const statValues = ["4", "300k+", "70+"];
 
 export function Home() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const h = t.home;
+  const p = (path: string) => `/${language}${path}`;
 
   return (
     <>
@@ -27,6 +29,7 @@ export function Home() {
         title="Big Good | Email Marketing Ecosystem"
         description="Big Good je ekosystém nástrojů pro e-mailový marketing — Ecomail, Topol, DMARCeye a Lettr. Provozuje ECOMAIL.CZ, s.r.o."
         url="/"
+        lang={language}
       />
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -51,23 +54,11 @@ export function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 xl:gap-5 pt-1">
-              <Button
-                size="lg"
-                className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover-lift px-6 sm:px-8 xl:px-10 py-5 sm:py-6 xl:py-7 text-sm sm:text-base xl:text-lg font-semibold"
-                asChild
-              >
-                <Link to="/services">
-                  {h.cta}
-                  <ArrowRight className="ml-2 h-4 w-4 xl:h-5 xl:w-5" />
-                </Link>
+              <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover-lift px-6 sm:px-8 xl:px-10 py-5 sm:py-6 xl:py-7 text-sm sm:text-base xl:text-lg font-semibold" asChild>
+                <Link to={p("/services")}>{h.cta}<ArrowRight className="ml-2 h-4 w-4 xl:h-5 xl:w-5" /></Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-2xl border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 px-6 sm:px-8 xl:px-10 py-5 sm:py-6 xl:py-7 text-sm sm:text-base xl:text-lg font-semibold"
-                asChild
-              >
-                <Link to="/about">{h.learn}</Link>
+              <Button size="lg" variant="outline" className="rounded-2xl border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 px-6 sm:px-8 xl:px-10 py-5 sm:py-6 xl:py-7 text-sm sm:text-base xl:text-lg font-semibold" asChild>
+                <Link to={p("/about")}>{h.learn}</Link>
               </Button>
             </div>
 
@@ -101,13 +92,9 @@ export function Home() {
                   className="group hover-lift hover-scale border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden cursor-pointer"
                   onClick={() => window.open(meta.url, "_blank", "noopener,noreferrer")}
                 >
-                  <div className="relative h-24 sm:h-28 xl:h-40 2xl:h-48 overflow-hidden">
-                    <img src={meta.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${meta.color}`} />
-                    <div className="relative z-10 flex items-center justify-center h-full">
-                      <div className="bg-white/95 rounded-xl px-3 sm:px-5 xl:px-6 py-2 xl:py-3">
-                        <img src={meta.logo} alt={product.name} className="h-5 sm:h-7 xl:h-9 2xl:h-10 w-auto object-contain max-w-[110px] sm:max-w-[150px] xl:max-w-[180px]" />
-                      </div>
+                  <div className={`relative h-24 sm:h-28 xl:h-40 2xl:h-48 bg-gradient-to-br ${meta.color} flex items-center justify-center`}>
+                    <div className="bg-white/95 rounded-xl px-3 sm:px-5 xl:px-6 py-2 xl:py-3">
+                      <img src={meta.logo} alt={product.name} loading="lazy" className="h-5 sm:h-7 xl:h-9 2xl:h-10 w-auto object-contain max-w-[110px] sm:max-w-[150px] xl:max-w-[180px]" />
                     </div>
                   </div>
                   <CardContent className="p-4 sm:p-5 xl:p-6 2xl:p-7 space-y-1.5 xl:space-y-2">
@@ -122,10 +109,7 @@ export function Home() {
 
           <div className="text-center mt-8 xl:mt-12">
             <Button size="lg" variant="outline" className="rounded-2xl border-2 px-6 sm:px-8 xl:px-10 py-4 sm:py-5 xl:py-6 text-sm sm:text-base xl:text-lg font-semibold hover-lift" asChild>
-              <Link to="/services">
-                {h.toolsCta}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              <Link to={p("/services")}>{h.toolsCta}<ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
         </div>
@@ -138,10 +122,7 @@ export function Home() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-black text-gray-900 dark:text-white tracking-tight">{h.valuesHeading}</h2>
             <p className="text-sm sm:text-base xl:text-lg text-gray-600 dark:text-gray-400 font-normal">{h.valuesDesc}</p>
             <Button size="lg" className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg px-6 sm:px-8 xl:px-10 py-5 sm:py-6 xl:py-7 text-sm sm:text-base xl:text-lg font-semibold hover-lift" asChild>
-              <Link to="/about">
-                {h.valuesCta}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              <Link to={p("/about")}>{h.valuesCta}<ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
         </div>
@@ -158,7 +139,6 @@ export function Home() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-black tracking-tight">{h.careersHeading}</h2>
             <p className="text-sm sm:text-base xl:text-lg text-white/90 max-w-xl xl:max-w-2xl mx-auto font-normal">{h.careersDesc}</p>
           </div>
-
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-7 max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto">
             {h.perks.map(({ title, desc }, i) => {
               const Icon = perkIcons[i];
@@ -173,12 +153,8 @@ export function Home() {
               );
             })}
           </div>
-
           <Button size="lg" className="rounded-2xl bg-white text-blue-600 hover:bg-gray-100 shadow-lg hover:shadow-xl px-6 sm:px-8 xl:px-10 py-5 sm:py-6 xl:py-7 text-sm sm:text-base xl:text-lg font-semibold hover-lift" asChild>
-            <Link to="/careers">
-              {h.careersCta}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+            <Link to={p("/careers")}>{h.careersCta}<ArrowRight className="ml-2 h-5 w-5" /></Link>
           </Button>
         </div>
       </section>

@@ -11,13 +11,9 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => {
-    try {
-      const stored = localStorage.getItem("biggood-lang");
-      if (stored === "en" || stored === "cs") return stored;
-    } catch {}
-    return "en";
-  });
+  // Default "en" — the URL-based LangLayout will immediately set the correct language.
+  // We still write to localStorage so LangDetector can restore the preferred lang on next visit.
+  const [language, setLanguageState] = useState<Language>("en");
 
   function setLanguage(lang: Language) {
     setLanguageState(lang);

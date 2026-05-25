@@ -25,8 +25,10 @@ const companyBadgeColors: Record<BlogCompany, string> = {
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const post = slug ? getPostBySlug(slug) : undefined;
+  const b = t.blog;
+  const p = (path: string) => `/${language}${path}`;
 
   const htmlContent = useMemo(() => {
     if (!post) return "";
@@ -34,13 +36,16 @@ export function BlogPost() {
     return marked(raw) as string;
   }, [post, language]);
 
+  // Item 20: is this post untranslated in the current language?
+  const isUntranslated = post && language !== "en" && !post[language as "cs" | "de"];
+
   if (!post) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-black text-gray-900 dark:text-white">Post not found</h1>
           <Button asChild variant="outline" className="rounded-xl">
-            <Link to="/blog">
+            <Link to={p("/blog")}>
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Blog
             </Link>
@@ -56,6 +61,7 @@ export function BlogPost() {
         title={`${localizedField(post, "title", language)} | Big Good Blog`}
         description={localizedField(post, "excerpt", language)}
         url={`/blog/${post.slug}`}
+        lang={language}
         type="article"
         author={post.author}
         publishedTime={post.date}
@@ -69,7 +75,7 @@ export function BlogPost() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
             <Button asChild variant="ghost" className="pl-0 text-gray-500 hover:text-gray-900 dark:hover:text-white -ml-1">
-              <Link to="/blog">
+              <Link to={p("/blog")}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Blog
               </Link>
@@ -83,6 +89,12 @@ export function BlogPost() {
               {post.company && (
                 <span className={cn("px-3 py-1 rounded-full text-xs font-semibold", companyBadgeColors[post.company])}>
                   {post.company}
+                </span>
+              )}
+              {/* Item 20: untranslated notice */}
+              {isUntranslated && (
+                <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400 italic">
+                  {b.langFallback}
                 </span>
               )}
               <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
@@ -116,7 +128,7 @@ export function BlogPost() {
 
             <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
               <Button asChild variant="outline" className="rounded-xl">
-                <Link to="/blog">
+                <Link to={p("/blog")}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Blog
                 </Link>

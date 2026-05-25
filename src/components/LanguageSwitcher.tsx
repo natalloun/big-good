@@ -2,12 +2,15 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { LANGUAGES } from "@/lib/i18n";
+import { LANGUAGES, type Language } from "@/lib/i18n";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export function LanguageSwitcher() {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const current = LANGUAGES.find((l) => l.code === language)!;
 
@@ -18,6 +21,14 @@ export function LanguageSwitcher() {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
+
+  function switchTo(code: Language) {
+    setOpen(false);
+    // Replace the language segment in the current path: /cs/about → /en/about
+    const segments = location.pathname.split("/"); // ['', 'cs', 'about', ...]
+    segments[1] = code;
+    navigate(segments.join("/") + location.search, { replace: true });
+  }
 
   return (
     <div ref={ref} className="relative">
@@ -36,7 +47,7 @@ export function LanguageSwitcher() {
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => { setLanguage(lang.code); setOpen(false); }}
+              onClick={() => switchTo(lang.code)}
               className={cn(
                 "w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors text-left",
                 language === lang.code

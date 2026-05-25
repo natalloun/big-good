@@ -3,26 +3,27 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const tools = [
   { name: "Ecomail", url: "https://ecomail.cz/" },
-  { name: "Topol", url: "https://topol.io/" },
-  { name: "DMARCeye", url: "https://dmarceye.com/" },
-  { name: "Lettr", url: "https://lettr.com/" },
+  { name: "Topol",   url: "https://topol.io/" },
+  { name: "DMARCeye",url: "https://dmarceye.com/" },
+  { name: "Lettr",   url: "https://lettr.com/" },
 ];
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const f = t.footer;
+  const p = (path: string) => `/${language}${path}`;
 
   const companyLinks = [
-    { label: f.about, href: "/about" },
-    { label: f.values, href: "/about" },
-    { label: f.careers, href: "/careers" },
-    { label: f.newsroom, href: "/news" },
+    { label: f.about,    href: p("/about") },
+    { label: f.values,   href: p("/about") },
+    { label: f.careers,  href: p("/careers") },
+    { label: f.newsroom, href: p("/news") },
   ];
 
   const resourceLinks = [
-    { label: f.blog, href: "/blog" },
-    { label: f.pressKit, href: "/news" },
-    { label: f.forMedia, href: "/news" },
+    { label: f.blog,     href: p("/blog") },
+    { label: f.pressKit, href: p("/news") },
+    { label: f.forMedia, href: p("/news") },
   ];
 
   return (
@@ -31,7 +32,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] xl:grid-cols-[360px_1fr] gap-8 md:gap-10 xl:gap-12 mb-12 items-start">
           {/* Brand */}
           <div className="space-y-6">
-            <Link to="/" className="flex items-center gap-3">
+            <Link to={p("")} className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center">
                 <span className="text-white font-bold text-lg">BG</span>
               </div>
@@ -89,9 +90,9 @@ export function Footer() {
             © {new Date().getFullYear()} Big Good. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-gray-400">
-            <Link to="/privacy-policy" className="hover:text-white transition-colors">{f.privacy}</Link>
-            <Link to="/terms-of-service" className="hover:text-white transition-colors">{f.terms}</Link>
-            <Link to="/cookie-policy" className="hover:text-white transition-colors">{f.cookies}</Link>
+            <Link to={p("/privacy-policy")} className="hover:text-white transition-colors">{f.privacy}</Link>
+            <Link to={p("/terms-of-service")} className="hover:text-white transition-colors">{f.terms}</Link>
+            <Link to={p("/cookie-policy")} className="hover:text-white transition-colors">{f.cookies}</Link>
           </div>
         </div>
 

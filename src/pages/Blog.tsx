@@ -23,7 +23,6 @@ const categoryColors: Record<BlogCategory, string> = {
   Engineering:     "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
 };
 
-// Full-color company badge (background + text)
 const companyBadgeColors: Record<BlogCompany, string> = {
   Ecomail:  "bg-green-500 text-white",
   Topol:    "bg-gray-700 text-white",
@@ -31,7 +30,6 @@ const companyBadgeColors: Record<BlogCompany, string> = {
   Lettr:    "bg-purple-700 text-white",
 };
 
-// Dot color for sidebar filter checkboxes
 const companyDotColors: Record<BlogCompany, string> = {
   Ecomail:  "bg-green-500",
   Topol:    "bg-gray-700",
@@ -40,24 +38,16 @@ const companyDotColors: Record<BlogCompany, string> = {
 };
 
 function FilterCheckbox({
-  label,
-  checked,
-  onChange,
-  dot,
+  label, checked, onChange, dot,
 }: {
-  label: string;
-  checked: boolean;
-  onChange: () => void;
-  dot?: string;
+  label: string; checked: boolean; onChange: () => void; dot?: string;
 }) {
   return (
     <label className="flex items-center gap-3 cursor-pointer group">
       <div
         className={cn(
           "w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-150 flex-shrink-0",
-          checked
-            ? "bg-blue-600 border-blue-600"
-            : "border-gray-300 dark:border-gray-600 group-hover:border-blue-400"
+          checked ? "bg-blue-600 border-blue-600" : "border-gray-300 dark:border-gray-600 group-hover:border-blue-400"
         )}
         onClick={onChange}
       >
@@ -78,42 +68,35 @@ function FilterCheckbox({
 export function Blog() {
   const { t, language } = useLanguage();
   const b = t.blog;
+  const p = (path: string) => `/${language}${path}`;
+
   const [selectedCompanies, setSelectedCompanies] = useState<Set<BlogCompany>>(new Set());
   const [selectedCategories, setSelectedCategories] = useState<Set<BlogCategory>>(new Set());
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   function toggleCompany(c: BlogCompany) {
-    setSelectedCompanies((prev) => {
-      const next = new Set(prev);
-      next.has(c) ? next.delete(c) : next.add(c);
-      return next;
-    });
+    setSelectedCompanies((prev) => { const next = new Set(prev); next.has(c) ? next.delete(c) : next.add(c); return next; });
   }
-
   function toggleCategory(c: BlogCategory) {
-    setSelectedCategories((prev) => {
-      const next = new Set(prev);
-      next.has(c) ? next.delete(c) : next.add(c);
-      return next;
-    });
+    setSelectedCategories((prev) => { const next = new Set(prev); next.has(c) ? next.delete(c) : next.add(c); return next; });
   }
-
   function clearFilters() {
     setSelectedCompanies(new Set());
     setSelectedCategories(new Set());
   }
 
   const filtered = blogPosts.filter((post) => {
-    const companyMatch =
-      selectedCompanies.size === 0 ||
-      (post.company !== null && selectedCompanies.has(post.company));
-    const categoryMatch =
-      selectedCategories.size === 0 || selectedCategories.has(post.category);
+    const companyMatch = selectedCompanies.size === 0 || (post.company !== null && selectedCompanies.has(post.company));
+    const categoryMatch = selectedCategories.size === 0 || selectedCategories.has(post.category);
     return companyMatch && categoryMatch;
   });
 
   const hasFilters = selectedCompanies.size > 0 || selectedCategories.size > 0;
   const activeFilterCount = selectedCompanies.size + selectedCategories.size;
+
+  // A post is "untranslated" when viewing a non-EN language but no translation exists
+  const isUntranslated = (post: typeof blogPosts[number]) =>
+    language !== "en" && !post[language as "cs" | "de"];
 
   return (
     <>
@@ -121,7 +104,9 @@ export function Blog() {
         title="Blog | Big Good"
         description="Postřehy, aktualizace produktů, analýzy a technické články z ekosystému Big Good — Ecomail, Topol, DMARCeye a Lettr."
         url="/blog"
+        lang={language}
       />
+
       {/* Hero */}
       <section className="relative pt-28 pb-12 md:pt-32 md:pb-14 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -143,7 +128,7 @@ export function Blog() {
       <section className="py-12 md:py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
 
-          {/* ── Mobile filter bar (hidden on lg+) ── */}
+          {/* Mobile filter bar */}
           <div className="lg:hidden flex items-center justify-between mb-4">
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {b.articleCount(filtered.length, hasFilters)}
@@ -167,116 +152,70 @@ export function Blog() {
             </button>
           </div>
 
-          {/* ── Mobile filter panel ── */}
+          {/* Mobile filter panel */}
           {mobileFiltersOpen && (
             <div className="lg:hidden mb-6 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 space-y-5">
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                    {b.filterProduct}
-                  </h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">{b.filterProduct}</h3>
                   <div className="space-y-2.5">
                     {ALL_COMPANIES.map((company) => (
-                      <FilterCheckbox
-                        key={company}
-                        label={company}
-                        checked={selectedCompanies.has(company)}
-                        onChange={() => toggleCompany(company)}
-                        dot={companyDotColors[company]}
-                      />
+                      <FilterCheckbox key={company} label={company} checked={selectedCompanies.has(company)} onChange={() => toggleCompany(company)} dot={companyDotColors[company]} />
                     ))}
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                    {b.filterType}
-                  </h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">{b.filterType}</h3>
                   <div className="space-y-2.5">
                     {ALL_CATEGORIES.map((cat) => (
-                      <FilterCheckbox
-                        key={cat}
-                        label={cat}
-                        checked={selectedCategories.has(cat)}
-                        onChange={() => toggleCategory(cat)}
-                      />
+                      <FilterCheckbox key={cat} label={cat} checked={selectedCategories.has(cat)} onChange={() => toggleCategory(cat)} />
                     ))}
                   </div>
                 </div>
               </div>
               {hasFilters && (
-                <button
-                  onClick={clearFilters}
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                >
+                <button onClick={clearFilters} className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium">
                   {b.clearFilters}
                 </button>
               )}
             </div>
           )}
 
-          {/* ── Main layout: sidebar (desktop) + grid ── */}
+          {/* Desktop: sidebar + grid */}
           <div className="flex gap-10 max-w-7xl mx-auto items-start">
 
             {/* Desktop sidebar */}
             <aside className="hidden lg:block w-56 xl:w-64 flex-shrink-0 sticky top-24 space-y-8">
-
-              {/* Filter by product */}
               <div className="space-y-3">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  {b.filterProduct}
-                </h3>
+                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">{b.filterProduct}</h3>
                 <div className="space-y-2.5">
                   {ALL_COMPANIES.map((company) => (
-                    <FilterCheckbox
-                      key={company}
-                      label={company}
-                      checked={selectedCompanies.has(company)}
-                      onChange={() => toggleCompany(company)}
-                      dot={companyDotColors[company]}
-                    />
+                    <FilterCheckbox key={company} label={company} checked={selectedCompanies.has(company)} onChange={() => toggleCompany(company)} dot={companyDotColors[company]} />
                   ))}
                 </div>
               </div>
-
               <div className="h-px bg-gray-200 dark:bg-gray-700" />
-
-              {/* Filter by type */}
               <div className="space-y-3">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  {b.filterType}
-                </h3>
+                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">{b.filterType}</h3>
                 <div className="space-y-2.5">
                   {ALL_CATEGORIES.map((cat) => (
-                    <FilterCheckbox
-                      key={cat}
-                      label={cat}
-                      checked={selectedCategories.has(cat)}
-                      onChange={() => toggleCategory(cat)}
-                    />
+                    <FilterCheckbox key={cat} label={cat} checked={selectedCategories.has(cat)} onChange={() => toggleCategory(cat)} />
                   ))}
                 </div>
               </div>
-
-              {/* Clear filters */}
               {hasFilters && (
-                <button
-                  onClick={clearFilters}
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                >
+                <button onClick={clearFilters} className="text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium">
                   {b.clearFilters}
                 </button>
               )}
             </aside>
 
-            {/* ── Article grid ── */}
+            {/* Article grid */}
             <div className="flex-1 min-w-0">
               {filtered.length === 0 ? (
                 <div className="text-center py-24 text-gray-500 dark:text-gray-400">
                   <p className="text-lg font-medium">{b.noResults}</p>
-                  <button
-                    onClick={clearFilters}
-                    className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                  >
+                  <button onClick={clearFilters} className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline">
                     {b.clearInline}
                   </button>
                 </div>
@@ -287,9 +226,9 @@ export function Blog() {
                   </p>
                   <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
                     {filtered.map((post) => (
-                      <Link key={post.slug} to={`/blog/${post.slug}`} className="group block">
+                      <Link key={post.slug} to={p(`/blog/${post.slug}`)} className="group block">
                         <Card className="rounded-2xl border-gray-200 dark:border-gray-700 hover-lift overflow-hidden h-full flex flex-col">
-                          {/* Image placeholder */}
+                          {/* Placeholder image area */}
                           <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center flex-shrink-0">
                             <svg className="w-10 h-10 text-gray-300 dark:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -297,7 +236,7 @@ export function Blog() {
                           </div>
 
                           <CardContent className="p-4 sm:p-5 flex flex-col flex-1 gap-3">
-                            {/* Badges */}
+                            {/* Badges row */}
                             <div className="flex flex-wrap gap-2">
                               <span className={cn("px-2.5 py-0.5 rounded-full text-xs font-semibold", categoryColors[post.category])}>
                                 {post.category}
@@ -307,23 +246,26 @@ export function Blog() {
                                   {post.company}
                                 </span>
                               )}
+                              {/* Item 20: untranslated indicator */}
+                              {isUntranslated(post) && (
+                                <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400 italic">
+                                  {b.langFallback}
+                                </span>
+                              )}
                             </div>
 
-                            {/* Title */}
                             <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                               {localizedField(post, "title", language)}
                             </h3>
 
-                            {/* Excerpt */}
                             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
                               {localizedField(post, "excerpt", language)}
                             </p>
 
-                            {/* Footer */}
                             <div className="flex items-center justify-between pt-1">
                               <span className="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
                                 <Calendar className="w-3 h-3" />
-                                {formatDate(post.date)}
+                                {formatDate(post.date, language)}
                               </span>
                               <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
                             </div>

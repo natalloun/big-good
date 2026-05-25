@@ -110,8 +110,15 @@ export const translations = {
       noResults: "No articles match your filters.",
       clearInline: "Clear filters",
       filterBtn: "Filters",
+      langFallback: "EN only",
       articleCount: (n: number, filtered: boolean) =>
         `${n} article${n !== 1 ? "s" : ""}${filtered ? " matching filters" : ""}`,
+    },
+    cookieBanner: {
+      message: "We use cookies to enhance your browsing experience. See our",
+      learnMore: "Cookie Policy",
+      accept: "Accept all",
+      decline: "Decline",
     },
     footer: {
       tagline: "We're an ecosystem of smart tools for creators, marketers, and digital teams. Not a traditional holding company — more of a shared space where independent tools thrive around common values.",
@@ -235,8 +242,15 @@ export const translations = {
       noResults: "Žádné články neodpovídají filtrům.",
       clearInline: "Zrušit filtry",
       filterBtn: "Filtry",
+      langFallback: "Pouze EN",
       articleCount: (n: number, filtered: boolean) =>
         `${n} ${n === 1 ? "článek" : n < 5 ? "články" : "článků"}${filtered ? " odpovídá filtrům" : ""}`,
+    },
+    cookieBanner: {
+      message: "Používáme cookies pro zlepšení vašeho zážitku. Přečtěte si naši",
+      learnMore: "Politiku cookies",
+      accept: "Přijmout vše",
+      decline: "Odmítnout",
     },
     footer: {
       tagline: "Jsme ekosystém chytrých nástrojů pro tvůrce, marketéry a digitální týmy. Nejsme tradiční holdingová společnost — spíše sdílený prostor, kde nezávislé nástroje prosperují na základě společných hodnot.",
@@ -360,8 +374,15 @@ export const translations = {
       noResults: "Keine Artikel entsprechen Ihren Filtern.",
       clearInline: "Filter entfernen",
       filterBtn: "Filter",
+      langFallback: "Nur EN",
       articleCount: (n: number, filtered: boolean) =>
         `${n} Artikel${filtered ? " entsprechen den Filtern" : ""}`,
+    },
+    cookieBanner: {
+      message: "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Lesen Sie unsere",
+      learnMore: "Cookie-Richtlinie",
+      accept: "Alle akzeptieren",
+      decline: "Ablehnen",
     },
     footer: {
       tagline: "Wir sind ein Ökosystem smarter Tools für Creator, Marketer und digitale Teams. Kein traditionelles Holdingkonzern – eher ein gemeinsamer Raum, in dem unabhängige Tools auf Basis gemeinsamer Werte gedeihen.",
