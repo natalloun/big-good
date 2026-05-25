@@ -44,7 +44,7 @@ export function Home() {
         <div className="container mx-auto px-4 xl:px-10 relative z-10">
           <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto text-center space-y-4 sm:space-y-5 xl:space-y-8 animate-fade-in">
             <h1 className="space-y-2">
-              <span className="block text-[2.2rem] xs:text-[2.75rem] sm:text-6xl md:text-[7rem] lg:text-[10rem] xl:text-[13rem] 2xl:text-[15rem] font-black tracking-tight leading-none pb-[0.2em] bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 bg-clip-text text-transparent">
+              <span className="block text-[3.5rem] sm:text-6xl md:text-[7rem] lg:text-[10rem] xl:text-[13rem] 2xl:text-[15rem] font-black tracking-tight leading-none pb-[0.2em] bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 bg-clip-text text-transparent">
                 Big Good
               </span>
               <span className="block text-base sm:text-xl md:text-2xl xl:text-3xl 2xl:text-4xl font-semibold text-gray-700 dark:text-gray-200 tracking-tight max-w-2xl xl:max-w-3xl mx-auto leading-snug">
@@ -66,6 +66,24 @@ export function Home() {
             </div>
           </div>
         </div>
+        </div>
+      </section>
+
+      {/* Stats bar */}
+      <section className="py-10 md:py-14 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-3 gap-4 max-w-xs sm:max-w-md md:max-w-xl mx-auto text-center">
+            {([
+              { value: "4",     label: h.stats.tools },
+              { value: "300k+", label: h.stats.users },
+              { value: "70+",   label: h.stats.countries },
+            ] as const).map(({ value, label }) => (
+              <div key={label}>
+                <div className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black text-blue-600 dark:text-blue-400">{value}</div>
+                <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium mt-1">{label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
