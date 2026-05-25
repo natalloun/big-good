@@ -35,8 +35,8 @@ The blog covers topics including email marketing best practices, product announc
 
 ## Sitemap
 
-https://biggood.netlify.app/sitemap.xml
+https://big-good.vercel.app/sitemap.xml
 
 ## RSS Feed
 
-https://biggood.netlify.app/rss.xml
+https://big-good.vercel.app/rss.xml

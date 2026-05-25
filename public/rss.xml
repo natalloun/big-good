@@ -2,60 +2,50 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Big Good Blog</title>
-    <link>https://biggood.netlify.app/blog</link>
+    <link>https://big-good.vercel.app/en/blog</link>
     <description>Insights, product updates, and analysis from the Big Good ecosystem — Ecomail, Topol, DMARCeye, and Lettr.</description>
     <language>en</language>
     <lastBuildDate>Wed, 21 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://biggood.netlify.app/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://big-good.vercel.app/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
-      <title>Article Title Goes Here</title>
-      <link>https://biggood.netlify.app/blog/placeholder-announcement-1</link>
-      <guid>https://biggood.netlify.app/blog/placeholder-announcement-1</guid>
-      <pubDate>Thu, 01 May 2026 00:00:00 +0000</pubDate>
-      <category>Announcement</category>
-      <author>Big Good Team</author>
-      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
-    </item>
-
-    <item>
-      <title>Article Title Goes Here</title>
-      <link>https://biggood.netlify.app/blog/placeholder-analysis-1</link>
-      <guid>https://biggood.netlify.app/blog/placeholder-analysis-1</guid>
-      <pubDate>Sun, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <title>The DMARC Enforcement Gap: Why 68% of Domains Are Still Vulnerable in Q1 2026</title>
+      <link>https://big-good.vercel.app/en/blog/dmarc-enforcement-gap-q1-2026</link>
+      <guid>https://big-good.vercel.app/en/blog/dmarc-enforcement-gap-q1-2026</guid>
+      <pubDate>Wed, 14 May 2026 00:00:00 +0000</pubDate>
       <category>Analysis</category>
-      <author>Big Good Team</author>
-      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+      <author>Ondřej Caletka</author>
+      <description>A look at DMARC adoption trends in Q1 2026: which industries are lagging, what enforcement gaps exist, and why moving to p=reject matters now.</description>
     </item>
 
     <item>
-      <title>Article Title Goes Here</title>
-      <link>https://biggood.netlify.app/blog/placeholder-product-update-1</link>
-      <guid>https://biggood.netlify.app/blog/placeholder-product-update-1</guid>
-      <pubDate>Thu, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <title>DMARCeye Goes Global: AI-Native DMARC Monitoring Is Here</title>
+      <link>https://big-good.vercel.app/en/blog/dmarceye-goes-global-ai-native-dmarc-monitoring</link>
+      <guid>https://big-good.vercel.app/en/blog/dmarceye-goes-global-ai-native-dmarc-monitoring</guid>
+      <pubDate>Tue, 06 May 2026 00:00:00 +0000</pubDate>
+      <category>Announcement</category>
+      <author>DMARCeye Team</author>
+      <description>DMARCeye launches globally with AI-powered threat detection, real-time alerts, and a redesigned dashboard built for modern security teams.</description>
+    </item>
+
+    <item>
+      <title>Topol Builder v3: Smarter Templates, AI Assist, and a New Component Library</title>
+      <link>https://big-good.vercel.app/en/blog/topol-builder-v3-smarter-templates-ai-assist</link>
+      <guid>https://big-good.vercel.app/en/blog/topol-builder-v3-smarter-templates-ai-assist</guid>
+      <pubDate>Thu, 24 Apr 2026 00:00:00 +0000</pubDate>
       <category>Product Update</category>
       <author>Topol Team</author>
-      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+      <description>Topol Builder v3 ships with AI content suggestions, a refreshed component library, and a new collaboration mode for distributed teams.</description>
     </item>
 
     <item>
-      <title>Article Title Goes Here</title>
-      <link>https://biggood.netlify.app/blog/placeholder-case-study-1</link>
-      <guid>https://biggood.netlify.app/blog/placeholder-case-study-1</guid>
-      <pubDate>Fri, 28 Mar 2026 00:00:00 +0000</pubDate>
-      <category>Case Study</category>
-      <author>DMARCeye Team</author>
-      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
-    </item>
-
-    <item>
-      <title>Article Title Goes Here</title>
-      <link>https://biggood.netlify.app/blog/placeholder-engineering-1</link>
-      <guid>https://biggood.netlify.app/blog/placeholder-engineering-1</guid>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
-      <category>Engineering</category>
-      <author>Lettr Team</author>
-      <description>A short description of this article goes here. This is placeholder text to show the layout of the blog card.</description>
+      <title>Ecomail Hits 300,000 Active Users: What We Learned Building Email Infrastructure at Scale</title>
+      <link>https://big-good.vercel.app/en/blog/ecomail-500-milestone-300k-active-users</link>
+      <guid>https://big-good.vercel.app/en/blog/ecomail-500-milestone-300k-active-users</guid>
+      <pubDate>Sat, 12 Apr 2026 00:00:00 +0000</pubDate>
+      <category>Announcement</category>
+      <author>Jakub Stupka</author>
+      <description>Ecomail reaches 300,000 active users. A look back at the architecture decisions, product bets, and team culture that got us here.</description>
     </item>
 
   </channel>
