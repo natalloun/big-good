@@ -19,6 +19,8 @@ export type BlogPost = {
   excerpt: string;
   author: string;
   content: string;
+  /** Path to the article thumbnail (relative to /public), e.g. "/images/blog/foo.png" */
+  image?: string;
   // Add translated versions here when available.
   // Example: cs: { title: "...", excerpt: "...", content: "..." }
   cs?: BlogPostTranslation;
@@ -33,6 +35,7 @@ export const blogPosts: BlogPost[] = [
     category: "Analysis",
     company: "DMARCeye",
     author: "Jack Zagorski",
+    image: "/images/blog/dmarc-enforcement-gap.png",
     excerpt: "DMARCeye's Q1 2026 monitoring data reveals that over a third of DMARC-engaged domains remain at p=none and never reach enforcement. Here's why domains stall — and the step-by-step path forward.",
     content: `## DMARC's Enforcement Challenge
 
@@ -144,6 +147,7 @@ Jedno související zjištění z Q1 zprávy: pouze asi **6 %** prosazujících 
     category: "Announcement",
     company: "DMARCeye",
     author: "Jack Zagorski",
+    image: "/images/blog/dmarceye-global.png",
     excerpt: "DMARCeye announces its global expansion as a standalone product with a dedicated team, roadmap, and branding. The platform's data shows 43.7% of monitored domains are still stuck at p=none — and DMARCeye is built to change that.",
     content: `Today, DMARCeye announces its global expansion with a dedicated team, product roadmap, and branding. Originally developed in 2024 by Ecomail — a European email marketing platform serving over 12,000 customers — DMARCeye is now actively developed and marketed as a standalone product.
 
@@ -239,6 +243,7 @@ DMARCeye je součástí ekosystému **Big Good** — sbírky nástrojů vedenýc
     category: "Announcement",
     company: "Lettr",
     author: "Jack Zagorski",
+    image: "/images/blog/lettr-launch.png",
     excerpt: "Topol.io introduces Lettr — a transactional email platform that lets developers set up sending once while giving marketing and product teams full ownership of email content. Built on Ecomail's proven infrastructure.",
     content: `We are proud to announce a new product built by the Topol team: **Lettr**, a transactional email platform that includes the Topol editor. Built on the proven email infrastructure of Ecomail, Lettr supports first-party domain controls for tracking and hosted assets, as well as content-editing workflows for non-developers.
 
@@ -298,6 +303,7 @@ For more information, visit [lettr.com](https://lettr.com).`,
     category: "Product Update",
     company: "DMARCeye",
     author: "Jack Zagorski",
+    image: "/images/blog/dmarceye-free-tools.png",
     excerpt: "DMARCeye has expanded its free tools section with practical utilities for validating and configuring DMARC, SPF, DKIM, and BIMI records — no account required.",
     content: `Email authentication should not require guesswork or a collection of disconnected online tools. Yet for many teams, configuring DMARC, SPF, DKIM, or BIMI still involves trial and error, DNS lookups, and uncertainty about whether records are correctly published.
 
@@ -357,6 +363,7 @@ The Free Tools help you validate individual records. DMARCeye helps you manage y
     category: "Announcement",
     company: "Ecomail",
     author: "Klára Palkosková",
+    image: "/images/blog/ecomail-2025.png",
     excerpt: "Ecomail grew 38% year-over-year in 2025, surpassing 200M CZK in revenue. Here's a look at the product updates, team growth, and milestones that shaped the year.",
     content: `## 2025 by the Numbers
 
@@ -428,6 +435,7 @@ An AI chatbot was introduced to speed up first-response communication. The suppo
     category: "Announcement",
     company: "Topol",
     author: "Jack Zagorski",
+    image: "/images/blog/topol-spinout.png",
     excerpt: "After more than a decade under Ecomail's umbrella, Topol.io has officially separated to operate as an independent entity. The standalone email editor now serves over 12,000 customers, with its plugin embedded in nearly 200 SaaS platforms.",
     content: `After more than a decade of development under Ecomail's umbrella, Topol.io has officially separated to operate as an independent company. In August 2025, TOPOL.io s.r.o. took over all customer contracts, development resources, and support responsibilities related to the Topol product line.
 

@@ -121,6 +121,18 @@ export function BlogPost() {
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
+            {/* Hero image */}
+            {post.image && (
+              <div className="mb-10 rounded-2xl overflow-hidden shadow-lg">
+                <img
+                  src={post.image}
+                  alt={localizedField(post, "title", language)}
+                  loading="eager"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            )}
+
             <div
               className="prose prose-lg dark:prose-invert prose-headings:font-black prose-headings:tracking-tight prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-strong:text-gray-900 dark:prose-strong:text-white max-w-none"
               dangerouslySetInnerHTML={{ __html: htmlContent }}
