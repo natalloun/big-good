@@ -1,104 +1,11 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Globe, Clock, TrendingUp, Heart, MapPin, Briefcase, ExternalLink } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { fetchPositions, type StoryblokPosition } from "@/data/storyblok";
 
 const perkIcons = [Globe, Clock, TrendingUp, Heart];
-
-const openPositions = [
-  {
-    en: {
-      title: "Product Marketing Manager for B2B SaaS",
-      description: "A great product is a foundation, but not enough on its own. We're looking for someone to help bring new and existing Ecomail features to businesses that want to do email marketing better.",
-      tags: ["Employment contract", "Freelance", "On-site"],
-      type: "Full-time",
-    },
-    cs: {
-      title: "Product Marketing Manager pro B2B SaaS",
-      description: "Kvalitní produkt je základ, ale sám o sobě nestačí. Hledáme proto někoho, kdo nám pomůže dostat nové i stávající funkce Ecomailu k firmám, které chtějí dělat e-mailing lépe.",
-      tags: ["Pracovní smlouva", "Freelance", "On-site"],
-      type: "Full-time",
-    },
-    de: {
-      title: "Product Marketing Manager für B2B SaaS",
-      description: "Ein gutes Produkt ist die Grundlage, aber allein nicht ausreichend. Wir suchen jemanden, der uns hilft, neue und bestehende Ecomail-Funktionen zu Unternehmen zu bringen, die E-Mail-Marketing besser machen wollen.",
-      tags: ["Arbeitsvertrag", "Freelance", "Vor Ort"],
-      type: "Vollzeit",
-    },
-    level: "Medior",
-    location: "Prague",
-    url: "https://ecomail.cz/kariera/product-marketing-manager-pro-b2b-saas/",
-  },
-  {
-    en: {
-      title: "PPC Specialist for SaaS",
-      description: "We're looking for a PPC specialist with a background in web analytics and data analysis. Experience managing PPC campaigns and Google Analytics is a must.",
-      tags: ["On-site"],
-      type: "Full-time",
-    },
-    cs: {
-      title: "PPC Specialista pro SaaS",
-      description: "Hledáme PPC specialistu s přesahem do webové analytiky a datové analýzy. Zkušenosti se správou PPC kampaní a Google Analytics jsou nutností.",
-      tags: ["On-site"],
-      type: "Full-time",
-    },
-    de: {
-      title: "PPC-Spezialist für SaaS",
-      description: "Wir suchen einen PPC-Spezialisten mit Erfahrung in Web-Analyse und Datenanalyse. Kenntnisse im Management von PPC-Kampagnen und Google Analytics sind erforderlich.",
-      tags: ["Vor Ort"],
-      type: "Vollzeit",
-    },
-    level: "Medior",
-    location: "Prague",
-    url: "https://ecomail.cz/kariera/ppc-specialista-pro-saas/",
-  },
-  {
-    en: {
-      title: "Technical Support Specialist for Poland",
-      description: "We're looking for a technical support specialist for the Polish market. You'll handle technical inquiries and customer requests in Polish.",
-      tags: ["Employment contract", "Freelance", "On-site"],
-      type: "Full-time",
-    },
-    cs: {
-      title: "Specialista technické podpory pro Polsko",
-      description: "Hledáme technického specialistu podpory pro polský trh. Budete vyřizovat technické dotazy a požadavky zákazníků v polštině.",
-      tags: ["Pracovní smlouva", "Freelance", "On-site"],
-      type: "Full-time",
-    },
-    de: {
-      title: "Technischer Support-Spezialist für Polen",
-      description: "Wir suchen einen technischen Support-Spezialisten für den polnischen Markt. Sie bearbeiten technische Anfragen und Kundenanfragen auf Polnisch.",
-      tags: ["Arbeitsvertrag", "Freelance", "Vor Ort"],
-      type: "Vollzeit",
-    },
-    level: "Junior",
-    location: "Prague",
-    url: "https://ecomail.cz/kariera/specialista-technicke-podpory/",
-  },
-  {
-    en: {
-      title: "Administrative Assistant",
-      description: "Get to know the world of digital finance. We're looking for a detail-oriented assistant with a background in accounting and administration.",
-      tags: ["Employment contract", "Freelance", "On-site"],
-      type: "Full-time / Part-time",
-    },
-    cs: {
-      title: "Administrativní asistent/ka",
-      description: "Poznej svět digitálních financí. Hledáme pečlivého asistenta/ku s přesahem do účetnictví a administrativy.",
-      tags: ["Pracovní smlouva", "Freelance", "On-site"],
-      type: "Full-time / Part-time",
-    },
-    de: {
-      title: "Verwaltungsassistent/in",
-      description: "Entdecken Sie die Welt der digitalen Finanzen. Wir suchen eine sorgfältige Assistenz mit Kenntnissen in Buchhaltung und Verwaltung.",
-      tags: ["Arbeitsvertrag", "Freelance", "Vor Ort"],
-      type: "Vollzeit / Teilzeit",
-    },
-    level: "Junior",
-    location: "Prague",
-    url: "https://ecomail.cz/kariera/administrativni-asistent/",
-  },
-];
 
 const levelColors: Record<string, string> = {
   Junior: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
@@ -106,18 +13,46 @@ const levelColors: Record<string, string> = {
   Senior: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
 };
 
+function PositionSkeleton() {
+  return (
+    <div className="p-6 rounded-2xl border-2 border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 animate-pulse space-y-3">
+      <div className="flex gap-2">
+        <div className="h-5 w-16 rounded-full bg-gray-200 dark:bg-gray-700" />
+        <div className="h-5 w-20 rounded-full bg-gray-200 dark:bg-gray-700" />
+      </div>
+      <div className="h-6 w-3/4 rounded-lg bg-gray-200 dark:bg-gray-700" />
+      <div className="h-4 w-full rounded-lg bg-gray-200 dark:bg-gray-700" />
+      <div className="h-4 w-5/6 rounded-lg bg-gray-200 dark:bg-gray-700" />
+    </div>
+  );
+}
+
 export function Careers() {
   const { t, language } = useLanguage();
   const c = t.careers;
 
+  const [positions, setPositions] = useState<StoryblokPosition[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    fetchPositions()
+      .then(setPositions)
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <>
       <SEO
-        title="Kariéra | Big Good"
-        description="Připojte se k týmu Big Good. Prozkoumejte otevřené pozice v Ecomail, Topol, DMARCeye a Lettr."
+        title="Careers | Big Good"
+        description="Join the Big Good team. Explore open positions at Ecomail, Topol, DMARCeye and Lettr."
         url="/careers"
         lang={language}
       />
+
       {/* Hero */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -156,10 +91,33 @@ export function Careers() {
             </div>
 
             <div className="space-y-4">
-              {openPositions.map((pos) => {
-                const loc = pos[language as "en" | "cs" | "de"] ?? pos.en;
-                return (<a
-                  key={pos.url}
+              {loading && (
+                <>
+                  <PositionSkeleton />
+                  <PositionSkeleton />
+                  <PositionSkeleton />
+                </>
+              )}
+
+              {error && (
+                <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+                  <p className="text-base font-medium">Could not load positions. View them directly at{" "}
+                    <a href="https://ecomail.cz/kariera/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      ecomail.cz/kariera
+                    </a>.
+                  </p>
+                </div>
+              )}
+
+              {!loading && !error && positions.length === 0 && (
+                <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+                  <p className="text-base font-medium">No open positions at the moment.</p>
+                </div>
+              )}
+
+              {!loading && !error && positions.map((pos) => (
+                <a
+                  key={pos.slug}
                   href={pos.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -168,34 +126,44 @@ export function Careers() {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex-1 space-y-3">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${levelColors[pos.level] ?? ""}`}>
-                          {pos.level}
-                        </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                          <MapPin className="w-3 h-3" />
-                          {pos.location}
-                        </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                          <Briefcase className="w-3 h-3" />
-                          {loc.type}
-                        </span>
+                        {pos.level && (
+                          <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${levelColors[pos.level] ?? "bg-gray-100 text-gray-600"}`}>
+                            {pos.level}
+                          </span>
+                        )}
+                        {pos.location && (
+                          <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                            <MapPin className="w-3 h-3" />
+                            {pos.location}
+                          </span>
+                        )}
+                        {pos.jobType && (
+                          <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                            <Briefcase className="w-3 h-3" />
+                            {pos.jobType}
+                          </span>
+                        )}
                       </div>
                       <h3 className="text-xl font-black text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {loc.title}
+                        {pos.title}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {loc.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {loc.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2.5 py-0.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-xs text-gray-600 dark:text-gray-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                      {pos.shortDescription && (
+                        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {pos.shortDescription}
+                        </p>
+                      )}
+                      {pos.contractType.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5">
+                          {pos.contractType.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2.5 py-0.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-xs text-gray-600 dark:text-gray-300"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     <div className="sm:self-center flex-shrink-0">
                       <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-sm font-semibold group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-600 transition-all duration-300 whitespace-nowrap">
@@ -204,8 +172,8 @@ export function Careers() {
                       </span>
                     </div>
                   </div>
-                </a>);
-              })}
+                </a>
+              ))}
             </div>
 
             {/* Spontaneous application */}
