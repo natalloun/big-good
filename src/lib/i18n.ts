@@ -75,6 +75,7 @@ export const translations = {
       spontaneous: "Nothing for you?",
       spontaneousDesc: "Don't see a role that fits? We're always open to hearing from talented people.",
       spontaneousCta: "Send your CV",
+      positionsSource: "Current positions from",
       perks: [
         { title: "Work from anywhere", desc: "Fully remote team across Europe" },
         { title: "Flexible hours", desc: "Work when you're most productive" },
@@ -200,6 +201,7 @@ export const translations = {
       spontaneous: "Nic pro tebe?",
       spontaneousDesc: "Nevidíš pozici, která by ti seděla? Rádi se ti ozveme, i když tu správnou roli teď nemáme.",
       spontaneousCta: "Pošli životopis",
+      positionsSource: "Aktuální pozice z",
       perks: [
         { title: "Práce odkudkoli", desc: "Plně vzdálený tým po celé Evropě" },
         { title: "Flexibilní pracovní doba", desc: "Pracujte, kdy jste nejproduktivnější" },
@@ -325,6 +327,7 @@ export const translations = {
       spontaneous: "Nichts Passendes dabei?",
       spontaneousDesc: "Siehst du keine passende Stelle? Wir freuen uns immer über Initiativbewerbungen.",
       spontaneousCta: "Lebenslauf senden",
+      positionsSource: "Aktuelle Stellen von",
       perks: [
         { title: "Arbeiten von überall", desc: "Vollständig remote in ganz Europa" },
         { title: "Flexible Arbeitszeiten", desc: "Arbeiten, wenn Sie am produktivsten sind" },

@@ -7,39 +7,95 @@ const perkIcons = [Globe, Clock, TrendingUp, Heart];
 
 const openPositions = [
   {
-    title: "Product Marketing Manager pro B2B SaaS",
+    en: {
+      title: "Product Marketing Manager for B2B SaaS",
+      description: "A great product is a foundation, but not enough on its own. We're looking for someone to help bring new and existing Ecomail features to businesses that want to do email marketing better.",
+      tags: ["Employment contract", "Freelance", "On-site"],
+      type: "Full-time",
+    },
+    cs: {
+      title: "Product Marketing Manager pro B2B SaaS",
+      description: "Kvalitní produkt je základ, ale sám o sobě nestačí. Hledáme proto někoho, kdo nám pomůže dostat nové i stávající funkce Ecomailu k firmám, které chtějí dělat e-mailing lépe.",
+      tags: ["Pracovní smlouva", "Freelance", "On-site"],
+      type: "Full-time",
+    },
+    de: {
+      title: "Product Marketing Manager für B2B SaaS",
+      description: "Ein gutes Produkt ist die Grundlage, aber allein nicht ausreichend. Wir suchen jemanden, der uns hilft, neue und bestehende Ecomail-Funktionen zu Unternehmen zu bringen, die E-Mail-Marketing besser machen wollen.",
+      tags: ["Arbeitsvertrag", "Freelance", "Vor Ort"],
+      type: "Vollzeit",
+    },
     level: "Medior",
-    location: "Praha",
-    type: "Full-time",
-    tags: ["Pracovní smlouva", "Freelance", "On-site"],
-    description: "Kvalitní produkt je základ, ale sám o sobě nestačí. Hledáme proto někoho, kdo nám pomůže dostat nové i stávající funkce Ecomailu k firmám, které chtějí dělat e-mailing lépe.",
+    location: "Prague",
     url: "https://ecomail.cz/kariera/product-marketing-manager-pro-b2b-saas/",
   },
   {
-    title: "PPC Specialista pro SaaS",
+    en: {
+      title: "PPC Specialist for SaaS",
+      description: "We're looking for a PPC specialist with a background in web analytics and data analysis. Experience managing PPC campaigns and Google Analytics is a must.",
+      tags: ["On-site"],
+      type: "Full-time",
+    },
+    cs: {
+      title: "PPC Specialista pro SaaS",
+      description: "Hledáme PPC specialistu s přesahem do webové analytiky a datové analýzy. Zkušenosti se správou PPC kampaní a Google Analytics jsou nutností.",
+      tags: ["On-site"],
+      type: "Full-time",
+    },
+    de: {
+      title: "PPC-Spezialist für SaaS",
+      description: "Wir suchen einen PPC-Spezialisten mit Erfahrung in Web-Analyse und Datenanalyse. Kenntnisse im Management von PPC-Kampagnen und Google Analytics sind erforderlich.",
+      tags: ["Vor Ort"],
+      type: "Vollzeit",
+    },
     level: "Medior",
-    location: "Praha",
-    type: "Full-time",
-    tags: ["On-site"],
-    description: "Hledáme PPC specialistu s přesahem do webové analytiky a datové analýzy. Zkušenosti se správou PPC kampaní a Google Analytics jsou nutností.",
+    location: "Prague",
     url: "https://ecomail.cz/kariera/ppc-specialista-pro-saas/",
   },
   {
-    title: "Specialista technické podpory pro Polsko",
+    en: {
+      title: "Technical Support Specialist for Poland",
+      description: "We're looking for a technical support specialist for the Polish market. You'll handle technical inquiries and customer requests in Polish.",
+      tags: ["Employment contract", "Freelance", "On-site"],
+      type: "Full-time",
+    },
+    cs: {
+      title: "Specialista technické podpory pro Polsko",
+      description: "Hledáme technického specialistu podpory pro polský trh. Budete vyřizovat technické dotazy a požadavky zákazníků v polštině.",
+      tags: ["Pracovní smlouva", "Freelance", "On-site"],
+      type: "Full-time",
+    },
+    de: {
+      title: "Technischer Support-Spezialist für Polen",
+      description: "Wir suchen einen technischen Support-Spezialisten für den polnischen Markt. Sie bearbeiten technische Anfragen und Kundenanfragen auf Polnisch.",
+      tags: ["Arbeitsvertrag", "Freelance", "Vor Ort"],
+      type: "Vollzeit",
+    },
     level: "Junior",
-    location: "Praha",
-    type: "Full-time",
-    tags: ["Pracovní smlouva", "Freelance", "On-site"],
-    description: "Hledáme technického specialistu podpory pro polský trh. Budete vyřizovat technické dotazy a požadavky zákazníků v polštině.",
+    location: "Prague",
     url: "https://ecomail.cz/kariera/specialista-technicke-podpory/",
   },
   {
-    title: "Administrativní asistent/ka",
+    en: {
+      title: "Administrative Assistant",
+      description: "Get to know the world of digital finance. We're looking for a detail-oriented assistant with a background in accounting and administration.",
+      tags: ["Employment contract", "Freelance", "On-site"],
+      type: "Full-time / Part-time",
+    },
+    cs: {
+      title: "Administrativní asistent/ka",
+      description: "Poznej svět digitálních financí. Hledáme pečlivého asistenta/ku s přesahem do účetnictví a administrativy.",
+      tags: ["Pracovní smlouva", "Freelance", "On-site"],
+      type: "Full-time / Part-time",
+    },
+    de: {
+      title: "Verwaltungsassistent/in",
+      description: "Entdecken Sie die Welt der digitalen Finanzen. Wir suchen eine sorgfältige Assistenz mit Kenntnissen in Buchhaltung und Verwaltung.",
+      tags: ["Arbeitsvertrag", "Freelance", "Vor Ort"],
+      type: "Vollzeit / Teilzeit",
+    },
     level: "Junior",
-    location: "Praha",
-    type: "Full-time / Part-time",
-    tags: ["Pracovní smlouva", "Freelance", "On-site"],
-    description: "Poznej svět digitálních financí. Hledáme pečlivého asistenta/ku s přesahem do účetnictví a administrativy.",
+    location: "Prague",
     url: "https://ecomail.cz/kariera/administrativni-asistent/",
   },
 ];
@@ -87,7 +143,7 @@ export function Careers() {
                 {c.positionsHeading}
               </h2>
               <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Aktuální pozice z{" "}
+                {c.positionsSource}{" "}
                 <a
                   href="https://ecomail.cz/kariera/"
                   target="_blank"
@@ -100,9 +156,10 @@ export function Careers() {
             </div>
 
             <div className="space-y-4">
-              {openPositions.map((pos) => (
-                <a
-                  key={pos.title}
+              {openPositions.map((pos) => {
+                const loc = pos[language as "en" | "cs" | "de"] ?? pos.en;
+                return (<a
+                  key={pos.url}
                   href={pos.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -120,17 +177,17 @@ export function Careers() {
                         </span>
                         <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
                           <Briefcase className="w-3 h-3" />
-                          {pos.type}
+                          {loc.type}
                         </span>
                       </div>
                       <h3 className="text-xl font-black text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {pos.title}
+                        {loc.title}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {pos.description}
+                        {loc.description}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
-                        {pos.tags.map((tag) => (
+                        {loc.tags.map((tag) => (
                           <span
                             key={tag}
                             className="px-2.5 py-0.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-xs text-gray-600 dark:text-gray-300"
@@ -147,8 +204,8 @@ export function Careers() {
                       </span>
                     </div>
                   </div>
-                </a>
-              ))}
+                </a>);
+              })}
             </div>
 
             {/* Spontaneous application */}
